@@ -1,0 +1,32 @@
+@import "landingPage";
+
+* {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  h2{
+    font-family: 'Gotham-Bold' !important;
+  }
+  button {
+    font-family: Helvetica, Arial, sans-serif !important;
+  }
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+body, html { overflow-x:hidden; }
+
+a {
+  outline: none;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+  text-decoration: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}

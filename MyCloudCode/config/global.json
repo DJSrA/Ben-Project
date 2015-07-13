@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "Ben Project": {
+            "applicationId": "yZXbx1cs1micyuuPRbtPCaLnO8U5aJ38L40RDoA1", 
+            "masterKey": "bel0M8ZBpgPMjBfmZvcZ5u673eeHAiWnZffpBieQy"
+        }, 
+        "_default": {
+            "link": "Ben Project"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.3.2"
+    }
+}
