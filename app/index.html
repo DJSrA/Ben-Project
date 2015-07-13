@@ -29,14 +29,63 @@
 
     </head>
     <body>
+        <div class="nav-template-container no-padding col-md-12"></div>
+        <div class="template-container no-padding col-md-12"></div>
+        <div class="footer-template-container no-padding col-md-12"></div>
 
-        <div class="template-container col-md-12"></div>
+        <script type="text/template" class="navbar-template">
+            <div class="col-md-12 navbar-container no-padding">
+                <div class="brand-logo-img col-md-1"></div>
+                <ul class="navigation-item-list float-right col-md-6">
+                    <li class="nav-item col-md-3 non-dropdown-btn"><div class="home nav-div" onClick="router.navigate('#',{trigger:true})">HOME</div></li>
+                    <li class="nav-item col-md-3 non-dropdown-btn about"><div class="about nav-div" onClick="router.navigate('#about',{trigger:true})">ABOUT</div></li>
+                    <li class="nav-item home-nav col-md-3"><div>
+                        <button class="btn home-nav dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            LOCATIONS
+                            <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li><a href="#">Separated link</a></li>
+                          </ul>
+                    </div></li>
+                    <li class="nav-item home-nav col-md-3"><div>
+                        <button class="btn home-nav dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            CLASSES
+                            <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li><a href="#">Separated link</a></li>
+                          </ul>
+                    </div></li>
+                </ul>
+            </div>
+        </script>
 
         <script type="text/template" class="landing-page-template">
-
-            <h1>Hello World!</h1>
+            <div class="header-background-image"></div>
+            <div class="text-container col-md-12">
+                <h1 class="header-txt-lg col-md-12 col-offset-md-3">YOUR DOJO</h1>
+                <p class="header-txt-p col-md-12 col-offset-md-3">Discover Self-Defense, Fitness & Fulfillment... </p>
+                <i class="fa fa-chevron-down"></i>
+            </div>
 
         </script>
+
+        <script type="text/template" class="about-template">
+            <h1>HELLO ABOUT WORLD!</h1>
+        </script>
+
+        <script type="text/template" class="footer-template">
+            <h1>I AM A FOOTER</h1>
+        </script>
+
+
 
         
 
@@ -74,6 +123,9 @@
         <!-- build:js({app,.tmp}) scripts/main.js -->
         <script src="scripts/landing-page-view.js"></script>
         <script src="scripts/landing-page-view.js"></script>
+        <script src="scripts/navbar-view.js"></script>
+        <script src="scripts/about-view.js"></script>
+        <script src="scripts/footer-view.js"></script>
 
         <!-- Latest compiled and minified JavaScript -->
         

@@ -1,21 +1,16 @@
 var LandingPage = Parse.View.extend ({
 
   events: {
+    // 'click .about-page-link': 'routeAbout'
   },
 
   template: _.template($('.landing-page-template').text()),
 
-  initialize: function(options) {
+  initialize: function() {
     var that = this;
-    this.router = options.router; 
     $('.template-container').html(this.$el)
     this.$el.html(this.template());
-    this.render();
-  },
-
-  render: function() {
+    $('.home-nav').prop('disabled', true);
   },
 
 });
-
-// for now this should just be an alan arms logo and some buttons to take the user to the other pages

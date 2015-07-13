@@ -2,16 +2,25 @@ var AppRouter = Parse.Router.extend({
 	
 	routes: {
 		''										: 'landingPage',
+		'about'								: 'aboutPage'
 	},
 
 	initialize: function(){
-		// this is for the swap function to work, and presumably for later when a navbar exists, there will be a navswap function
+		// this is for the swap function to work
 		this.navOptions = null;
 		this.currentView = null;
 	},
 
 	landingPage: function() {
 		this.swap( new LandingPage({router: this}) );
+		new NavbarView({router: this});
+		new FooterView({router: this});
+	},
+
+	aboutPage: function() {
+		this.swap( new AboutView({router: this}) );
+		new NavbarView({router: this});
+		new FooterView({router: this});
 	},
 
 	swap: function (view) {
