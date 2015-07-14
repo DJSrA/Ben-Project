@@ -34,7 +34,7 @@
         <div class="footer-template-container no-padding col-md-12"></div>
 
         <script type="text/template" class="navbar-template">
-        <nav class="navbar navbar-default navbar-fixed-top">
+        <nav class="navbar navbar-default navbar-fixed-top main-nav">
           <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -49,20 +49,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="#" onClick="router.navigate('#',{trigger:true})">HOME <span class="sr-only">(current)</span></a></li>
-                <li class="contact-us"><a href="#">CONTACT US</a></li>
-                <li><a href="#about" onClick="router.navigate('#about',{trigger:true})">ABOUT</a></li>
-                <li><a href="#about" onClick="router.navigate('#courses',{trigger:true})">COURSES</a></li>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">LOCATIONS <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Action</a></li>
-                      <li><a href="#">Another action</a></li>
-                      <li><a href="#">Something else here</a></li>
-                      <li role="separator" class="divider"></li>
-                      <li><a href="#">Separated link</a></li>
-                    </ul>
-                  </li>
+                <li class="home"><a onClick="router.navigate('#',{trigger:true})">HOME <span class="sr-only">(current)</span></a></li>
+                <li class="about"><a class="about">ABOUT</a></li>
+                <li class="contact-us"><a>CONTACT US</a></li>
+                <li><a href="#courses" onClick="router.navigate('#courses',{trigger:true})">COURSES</a></li>
+                <li><a href="#locations" onClick="router.navigate('#locations',{trigger:true})">LOCATIONS</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
               </ul>
@@ -85,10 +76,12 @@
         </script>
 
         <script type="text/template" class="about-template">
+            <div class="col-md-12 about-container">
             <div class="about-us col-xs-10 col-md-offset-1">
                 <h1 class="about-title">About Us Title</h1>
                 <p class="about-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras rhoncus posuere ornare. Maecenas lacus urna, lacinia eget dolor eget, commodo mollis libero. Cras et nulla et risus tempus convallis eget et nisi. Etiam vel augue pulvinar, gravida ante sit amet, scelerisque nisi. Etiam placerat sem id porttitor efficitur. Donec et molestie neque, nec gravida lectus. Vivamus nisi tortor, sagittis ut dui blandit, consectetur tristique nulla. Donec risus massa, vehicula vitae velit in, ullamcorper sollicitudin ante. Ut vel ultricies justo. Sed sed odio ac metus vehicula lobortis. Maecenas faucibus turpis quis nunc venenatis tincidunt.</p>
-                <button class="btn btn-success" onClick="router.navigate('#courses',{trigger:true})">VIEW COURSES</button>
+                <button class="btn btn-danger" onClick="router.navigate('#courses',{trigger:true})">VIEW COURSES</button>
+            </div>
             </div>
         </script>
 
@@ -144,6 +137,10 @@
                 </ul>
             </div>
         </div>
+        </script>
+
+        <script type="text/template" class="courses-page-template">
+            <div class="courses-template-list-container col-xs-10 col-md-offset-1"></div>
         </script>
 
         <script type="text/template" class="sign-in-template">
@@ -203,7 +200,7 @@
         </script>
 
         <script type="text/template" class="admin-template">
-            <nav class="navbar navbar-default navbar-admin">
+            <nav class="navbar navbar-default navbar-admin navbar-fixed-top">
               <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -222,9 +219,7 @@
                     <li class="active company-edit"><a onClick="router.navigate('#admin',{trigger:true})">Company <span class="sr-only">(current)</span></a></li>
                     <li class="about-edit"><a onClick="router.navigate('#admin/about',{trigger:true})">About <span class="sr-only">(current)</span></a></li>
                     <li class="courses-edit"><a onClick="router.navigate('#admin/courses',{trigger:true})">Courses <span class="sr-only">(current)</span></a></li>
-                    <li class="instructors-edit"><a onClick="router.navigate('#admin/instructors',{trigger:true})">Instructors <span class="sr-only">(current)</span></a></li>
-                    <li class="save-profile-edit-button"><a>SAVE</a></li>
-                    <li class="edit-profile-button"><a>EDIT</a></li>
+                    <li class="locations-edit"><a onClick="router.navigate('#admin/locations',{trigger:true})">Courses <span class="sr-only">(current)</span></a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                     <li class="logOut-nav"><a onClick="router.navigate('#',{trigger:true})">LOG OUT</a></li>
@@ -232,7 +227,10 @@
                 </div><!-- /.navbar-collapse -->
               </div><!-- /.container-fluid -->
             </nav>
-            
+            <div class="col-md-10 col-md-offset-1">
+                <button class="btn btn-default save-profile-edit-button float-right">SAVE</button>
+                <button class="btn btn-default edit-profile-button float-right">EDIT</button>
+            </div>
             <div class="profile-page-container col-md-12">
                 <div class="col-md-6">
                     <div class="form-group sign-in-form col-md-12">
@@ -266,22 +264,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 last-profile">
+                <div class="col-md-6 last-profile float-right">
                     <div class="form-group sign-in-form col-md-12">
                         <label>EXISTING LOGO</label>
                         <div class="input-group col-md-12" id="picit">
-                            <img class="col-md-6 no-padding" id="logo-img" src="../images/pre-load.png" alt="your logo"/>
+                            <img class="col-md-3 no-padding" id="logo-img" src="../images/pre-load.png" alt="your logo"/>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-5">
-                    <button type="button" class="save-profile-changes btn btn-success">SAVE</button>
                 </div>
             </div>
         </script>
 
         <script type="text/template" class="about-admin-template">
-            <nav class="navbar navbar-default navbar-admin">
+            <nav class="navbar navbar-default navbar-admin navbar-fixed-top">
               <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -300,9 +295,6 @@
                   <li class="company-edit"><a onClick="router.navigate('#admin',{trigger:true})">Company <span class="sr-only">(current)</span></a></li>
                   <li class="active about-edit"><a onClick="router.navigate('#admin/about',{trigger:true})">About <span class="sr-only">(current)</span></a></li>
                   <li class="courses-edit"><a onClick="router.navigate('#admin/courses',{trigger:true})">Courses <span class="sr-only">(current)</span></a></li>
-                  <li class="instructors-edit"><a onClick="router.navigate('#admin/instructors',{trigger:true})">Instructors <span class="sr-only">(current)</span></a></li>
-                    <li class="save-profile-edit-button"><a>SAVE</a></li>
-                    <li class="edit-profile-button"><a>EDIT</a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                     <li class="logOut-nav"><a onClick="router.navigate('#',{trigger:true})">LOG OUT</a></li>
@@ -310,12 +302,16 @@
                 </div><!-- /.navbar-collapse -->
               </div><!-- /.container-fluid -->
             </nav>
+            <div class="col-md-10 col-md-offset-1">
+                <button class="btn btn-default save-profile-edit-button float-right">SAVE</button>
+                <button class="btn btn-default edit-profile-button float-right">EDIT</button>
+            </div>
             <div class="profile-page-container col-md-12">
                 <div class="col-md-6">
                     <div class="form-group sign-in-form col-md-12">
                         <label>ABOUT TITLE</label>
                         <div class="input-group col-md-12">
-                            <input id="item-info-block" class="profile-edit form-control about-title-input" placeholder="" disabled="true"></input>
+                            <input id="item-info-block" class="profile-edit form-control about-title-input" placeholder="<%=Parse.User.current().get('aboutTitle')%>" disabled="true"></input>
                         </div>
                     </div>
                 </div>
@@ -323,7 +319,7 @@
                     <div class="form-group sign-in-form col-md-12">
                         <label>ABOUT BODY TEXT</label>
                         <div class="input-group col-md-12">
-                            <textarea id="item-info-block" class="form-control profile-edit about-body-textarea" placeholder="" disabled="true"></textarea>
+                            <textarea id="item-info-block" class="form-control profile-edit about-body-textarea" placeholder="<%=Parse.User.current().get('aboutBody')%>" disabled="true"></textarea>
                         </div>
                     </div>
                 </div>
@@ -331,7 +327,7 @@
         </script>
 
         <script type="text/template" class="courses-admin-template">
-            <nav class="navbar navbar-default navbar-admin">
+            <nav class="navbar navbar-default navbar-admin navbar-fixed-top">
               <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -350,9 +346,6 @@
                   <li class="company-edit"><a onClick="router.navigate('#admin',{trigger:true})">Company <span class="sr-only">(current)</span></a></li>
                   <li class="about-edit"><a onClick="router.navigate('#admin/about',{trigger:true})">About <span class="sr-only">(current)</span></a></li>
                   <li class="active courses-edit"><a onClick="router.navigate('#admin/courses',{trigger:true})">Courses <span class="sr-only">(current)</span></a></li>
-                  <li class="instructors-edit"><a onClick="router.navigate('#admin/instructors',{trigger:true})">Instructors <span class="sr-only">(current)</span></a></li>
-                    <li class="save-profile-edit-button"><a>SAVE</a></li>
-                    <li class="edit-profile-button"><a>EDIT</a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                     <li class="logOut-nav"><a onClick="router.navigate('#',{trigger:true})">LOG OUT</a></li>
@@ -360,28 +353,30 @@
                 </div><!-- /.navbar-collapse -->
               </div><!-- /.container-fluid -->
             </nav>
-            <div class="courses-list-container col-md-10 col-md-offset-1">
+            <div class="col-md-10 col-md-offset-1">
+                <button class="btn btn-default add-course">ADD +</button>
+                <button class="float-right btn btn-default save-profile-edit-button">SAVE</button>
+                <button class="float-right btn btn-default edit-profile-button">EDIT</button>
             </div>
             <div class="course-add-container col-md-10 col-md-offset-1">
             </div>
-            <div class="col-md-10 col-md-offset-1">
-                <button class="float-right btn btn-success add-course">ADD +</button>
+            <div class="courses-list-container col-md-10 col-md-offset-1">
             </div>
         </script>
 
         <script type="text/template" class="course-detail-template">
-            <div class="course-detail-container col-md-12">
+            <div class="course-detail-container col-md-12" id="<%=courseId%>">
                 <div class="form-group sign-in-form col-md-12">
-                    <label>COURSE TITLE</label>
+                    <label>COURSE TITLE - <%=courseTitle%></label>
                     <div class="input-group col-md-12">
-                        <input id="item-info-block" class="profile-edit form-control course-title-input" placeholder="" disabled="true"></input>
+                        <input id="item-info-block" class="profile-edit form-control course-title-input" placeholder="<%=courseTitle%>" disabled="true"></input>
                     </div>
                 </div>
                 <div class="col-md-6 no-padding">
                     <div class="form-group sign-in-form col-md-12">
                         <label>COURSE INSTRUCTOR</label>
                         <div class="input-group col-md-12">
-                            <input id="item-info-block" class="form-control profile-edit course-instructor-input" placeholder="" disabled="true"></input>
+                            <input id="item-info-block" class="form-control profile-edit course-instructor-input" placeholder="<%=courseInstructor%>" disabled="true"></input>
                         </div>
                     </div>
                 </div>
@@ -397,7 +392,52 @@
                     <div class="form-group sign-in-form col-md-12">
                         <label>COURSE DESCRIPTION</label>
                         <div class="input-group col-md-12">
-                            <textarea id="item-info-block" class="form-control profile-edit course-description-textarea" placeholder="" disabled="true"></textarea>
+                            <textarea id="item-info-block" class="form-control profile-edit course-description-textarea" placeholder="<%=courseDescription%>" disabled="true"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 last-profile">
+                    <div class="form-group sign-in-form col-md-12">
+                        <label>COURSE IMAGE</label>
+                        <div class="input-group col-md-12" id="picit">
+                            <img class="col-md-5 no-padding" id="logo-img" src="<%=courseImage%>" alt="your logo"/>
+                        </div>
+                    </div>
+                </div>
+                <button class="delete-class float-right btn btn-danger"  id="<%=courseId%>" disabled=true>DELETE</button>
+
+            </div>
+        </script>
+
+        <script type="text/template" class="add-course-detail-template">
+            <div class="add-course-detail-container col-md-12">
+                <div class="form-group sign-in-form col-md-12">
+                    <label>COURSE TITLE</label>
+                    <div class="input-group col-md-12">
+                        <input id="item-info-block" class="profile-edit form-control course-title-input" placeholder="Course Title" disabled="true"></input>
+                    </div>
+                </div>
+                <div class="col-md-6 no-padding">
+                    <div class="form-group sign-in-form col-md-12">
+                        <label>COURSE INSTRUCTOR</label>
+                        <div class="input-group col-md-12">
+                            <input id="item-info-block" class="form-control profile-edit course-instructor-input" placeholder="Course Instructor" disabled="true"></input>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 no-padding">
+                    <div class="form-group sign-in-form col-md-12">
+                        <label>UPLOAD LOGO</label>
+                        <div class="input-group col-md-12">
+                        <input type="file" id="myFile" class="form-control profile-edit logo-input" disabled="true" multiple size="50">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 no-padding">
+                    <div class="form-group sign-in-form col-md-12">
+                        <label>COURSE DESCRIPTION</label>
+                        <div class="input-group col-md-12">
+                            <textarea id="item-info-block" class="form-control profile-edit course-description-textarea" placeholder="Course Description..." disabled="true"></textarea>
                         </div>
                     </div>
                 </div>
@@ -409,48 +449,21 @@
                         </div>
                     </div>
                 </div>
+                <button class="btn btn-default save-new-edit-button float-right">SAVE</button>
             </div>
         </script>
 
         <script type="text/template" class="course-instance-template">
-            <h1><%=courseTitle%></h1>
-            <h3><%=courseInstructor%></h3>
-            <p><%=courseDescription%></p>
-            <img src="<%=courseImage%>"/>
-        </script>
-
-        <script type="text/template" class="instructors-admin-template">
-            <nav class="navbar navbar-default navbar-admin">
-              <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                  </button>
-                  
+            <div class="col-xs-12 course-detail-container">
+                <div class='col-xs-3' style="background: url(<%=courseImage%>) no-repeat center; min-height: 250px; max-height: 340px;">
                 </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                  <ul class="nav navbar-nav">
-                  <li class="company-edit"><a onClick="router.navigate('#admin',{trigger:true})">Company <span class="sr-only">(current)</span></a></li>
-                  <li class="about-edit"><a onClick="router.navigate('#admin/about',{trigger:true})">About <span class="sr-only">(current)</span></a></li>
-                  <li class="courses-edit"><a onClick="router.navigate('#admin/courses',{trigger:true})">Courses <span class="sr-only">(current)</span></a></li>
-                  <li class="active instructors-edit"><a onClick="router.navigate('#admin/instructors',{trigger:true})">Instructors <span class="sr-only">(current)</span></a></li>
-                    <li class="save-profile-edit-button"><a>SAVE</a></li>
-                    <li class="edit-profile-button"><a>EDIT</a></li>
-                  </ul>
-                  <ul class="nav navbar-nav navbar-right">
-                    <li class="logOut-nav"><a onClick="router.navigate('#',{trigger:true})">LOG OUT</a></li>
-                  </ul>
-                </div><!-- /.navbar-collapse -->
-              </div><!-- /.container-fluid -->
-            </nav>
+                <div class="col-md-9">
+                    <h1><%=courseTitle%></h1>
+                    <h3><%=courseInstructor%></h3>
+                    <p><%=courseDescription%></p>
+                </div>
+            </div>
         </script>
-
 
 
         
@@ -490,6 +503,7 @@
         <script src="scripts/landing-page-view.js"></script>
         <script src="scripts/landing-page-view.js"></script>
         <script src="scripts/navbar-view.js"></script>
+        <script src="scripts/courses-view.js"></script>
         <script src="scripts/about-view.js"></script>
         <script src="scripts/footer-view.js"></script>
         <script src="scripts/sign-in-view.js"></script>
@@ -497,7 +511,6 @@
         <script src="scripts/admin-view.js"></script>
         <script src="scripts/about-admin-view.js"></script>
         <script src="scripts/courses-admin-view.js"></script>
-        <script src="scripts/instructors-admin-view.js"></script>
 
         <!-- Latest compiled and minified JavaScript -->
         

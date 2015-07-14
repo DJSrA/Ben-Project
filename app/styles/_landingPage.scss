@@ -35,8 +35,26 @@
       text-shadow: 1px 4px 0px #000000;
     }
   }
-  .about-us {
-    padding: 60px 0;
-    text-align: center;
+  .about-container {
+    background-color: #FFFFFF;
+    .about-us {
+      padding: 140px 0 140px;
+      text-align: center;
+      .about-title {
+        font-size: 42px;
+      }
+      .about-body {
+        font-size: 16px;
+        line-height: 30px;
+        padding: 30px 0;
+      }
+      .btn {
+        width: 20%;
+        min-width: 200px;
+        min-height: 50px;
+        font-size: 16px;
+      }
+    }
   }
+
 }

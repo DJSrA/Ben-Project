@@ -22,6 +22,9 @@ var AdminPage = Parse.View.extend ({
           console.log(Parse.User.current().get('logo')._url);
           $('#logo-img').attr('src', Parse.User.current().get('logo')._url);
         }
+        $('.footer-template-container').hide();
+        $('.main-nav').hide();
+        $('.template-container').css('padding-top', '80px');
         this.readURL;
       }
     },

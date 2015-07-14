@@ -4,6 +4,7 @@ var NavbarView = Parse.View.extend ({
 
   events: {
     "click .contact-us": 'contactUs',
+    "click .about": 'scrollAbout',
     "click .home": 'scrollHome'
   },
 
@@ -21,6 +22,12 @@ var NavbarView = Parse.View.extend ({
   contactUs: function () {
     $('html,body').animate({
       scrollTop: $(".footer").offset().top
+    },200);
+  },
+
+  scrollAbout: function () {
+    $('html,body').animate({
+      scrollTop: $(".about-us").offset().top
     },200);
   },
 

@@ -10,7 +10,7 @@ var CoursesAdminPage = Parse.View.extend ({
 
   template: _.template($('.courses-admin-template').text()),
   detailTemplate: _.template($('.course-detail-template').text()),
-  courseInstanceTemplate: _.template($('.course-instance-template').text()),
+  courseInstanceTemplate: _.template($('.add-course-detail-template').text()),
 
 
     initialize: function() {
@@ -20,13 +20,12 @@ var CoursesAdminPage = Parse.View.extend ({
         $("html, body").scrollTop(0);
         $('.template-container').html(this.$el)
         this.$el.html(this.template());
-        // var thisLocation = window.location.hash.substring(1).toString();
-        // _.each($('.nav-link'), function(e){if(e.id == thisLocation){$(e).css('color','#ffffff')}else{$(e).css('color', '#9d9d9d')}});
         this.render();
         if(Parse.User.current().get('logo')){
           console.log(Parse.User.current().get('logo')._url);
           $('#logo-img').attr('src', Parse.User.current().get('logo')._url);
         }
+        $('.template-container').css('padding-top', '80px');
         this.readURL;
         this.getCourses();
       }
@@ -42,11 +41,12 @@ var CoursesAdminPage = Parse.View.extend ({
       query.find({
         success: function(course){
           for(i=0;i<course.length;i++){
-            $('.courses-list-container').prepend(that.courseInstanceTemplate({
+            $('.courses-list-container').prepend(that.detailTemplate({
               courseTitle: course[i].attributes.courseTitle,
               courseInstructor: course[i].attributes.courseInstructor,
               courseDescription: course[i].attributes.courseDescription,
-              courseImage: course[i].attributes.logo._url
+              courseImage: course[i].attributes.logo._url,
+              courseId: course[i].id
             }));
           }
         },
@@ -80,6 +80,25 @@ var CoursesAdminPage = Parse.View.extend ({
     },
 
     toggleEditAttribute: function(){
+      if($(event.target).hasClass('active')){
+        _.each($('.profile-edit'), function(){
+          $('.profile-edit').prop('disabled', 'disabled');
+          $('.delete-class').prop('disabled', true);
+        })
+        // $('.save-profile-edit-button').css('opacity', 0);
+        $(event.target).removeClass('active');
+      }else {
+        _.each($('.profile-edit'), function(){
+          $('.profile-edit').prop('disabled', false);
+          $('.delete-class').prop('disabled', false);
+
+        })
+        // $('.save-profile-edit-button').css('opacity', 1);
+        $(event.target).addClass('active');
+      }
+    },
+
+    toggleAddCourseEdit: function(){
       if($(event.target).hasClass('active')){
         _.each($('.profile-edit'), function(){
           $('.profile-edit').prop('disabled', 'disabled');
@@ -131,7 +150,7 @@ var CoursesAdminPage = Parse.View.extend ({
 
     addCourse: function(){
       $('.add-course').text('CANCEL').addClass('cancel-add').removeClass('add-course')
-      $('.course-add-container').prepend(this.detailTemplate);
+      $('.course-add-container').prepend(this.courseInstanceTemplate);
       this.toggleEditAttribute();
     },
 

@@ -15,8 +15,7 @@ var AboutAdminPage = Parse.View.extend ({
         $("html, body").scrollTop(0);
         $('.template-container').html(this.$el)
         this.$el.html(this.template());
-        // var thisLocation = window.location.hash.substring(1).toString();
-        // _.each($('.nav-link'), function(e){if(e.id == thisLocation){$(e).css('color','#ffffff')}else{$(e).css('color', '#9d9d9d')}});
+        $('.template-container').css('padding-top', '80px');
         this.render();
       }
     },
@@ -42,6 +41,8 @@ var AboutAdminPage = Parse.View.extend ({
 
     saveProfileEdit: function () {
       var that = this;
+      var text = $('.about-body-textarea').val();
+      text = text.replace(/\r?\n/g, '<br/>');
       Parse.User.current().set({
         aboutTitle:   ($('.about-title-input').val().length != 0 ? $('.about-title-input').val() : Parse.User.current().get('aboutTitle')),
         aboutBody:    ($('.about-body-textarea').val().trim().length != 0 ? $('.about-body-textarea').val() : Parse.User.current().get('aboutBody')),
