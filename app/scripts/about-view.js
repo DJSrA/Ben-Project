@@ -7,6 +7,7 @@ var AboutView = Parse.View.extend ({
 
   initialize: function() {
     var that = this;
+    $("html, body").scrollTop(0);
     $('.template-container').html(this.$el)
     this.$el.html(this.template());
     $('.about-nav').prop('disabled', true);
