@@ -1,0 +1,20 @@
+.about-body-textarea {
+  min-height: 300px;
+}
+
+.navbar-admin {
+  margin-top: 40px;
+}
+
+.course-detail-container {
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+  .course-description-textarea {
+    height: 191px;
+  }
+}
+
+.add-course {
+  margin: 15px 0;
+}
