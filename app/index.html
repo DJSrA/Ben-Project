@@ -52,7 +52,7 @@
                 <li class="active"><a href="#" onClick="router.navigate('#',{trigger:true})">HOME <span class="sr-only">(current)</span></a></li>
                 <li class="contact-us"><a href="#">CONTACT US</a></li>
                 <li><a href="#about" onClick="router.navigate('#about',{trigger:true})">ABOUT</a></li>
-
+                <li><a href="#about" onClick="router.navigate('#courses',{trigger:true})">COURSES</a></li>
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">LOCATIONS <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -63,16 +63,6 @@
                       <li><a href="#">Separated link</a></li>
                     </ul>
                   </li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">COURSES <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
-                </li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
               </ul>
@@ -95,9 +85,10 @@
         </script>
 
         <script type="text/template" class="about-template">
-            <div class="about-us col-md-12">
+            <div class="about-us col-xs-10 col-md-offset-1">
                 <h1 class="about-title">About Us Title</h1>
                 <p class="about-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras rhoncus posuere ornare. Maecenas lacus urna, lacinia eget dolor eget, commodo mollis libero. Cras et nulla et risus tempus convallis eget et nisi. Etiam vel augue pulvinar, gravida ante sit amet, scelerisque nisi. Etiam placerat sem id porttitor efficitur. Donec et molestie neque, nec gravida lectus. Vivamus nisi tortor, sagittis ut dui blandit, consectetur tristique nulla. Donec risus massa, vehicula vitae velit in, ullamcorper sollicitudin ante. Ut vel ultricies justo. Sed sed odio ac metus vehicula lobortis. Maecenas faucibus turpis quis nunc venenatis tincidunt.</p>
+                <button class="btn btn-success" onClick="router.navigate('#courses',{trigger:true})">VIEW COURSES</button>
             </div>
         </script>
 
@@ -222,7 +213,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="#">Brand</a>
+                  
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -300,7 +291,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="#">Brand</a>
+                  
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -350,7 +341,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="#">Brand</a>
+                  
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -370,6 +361,10 @@
               </div><!-- /.container-fluid -->
             </nav>
             <div class="courses-list-container col-md-10 col-md-offset-1">
+            </div>
+            <div class="course-add-container col-md-10 col-md-offset-1">
+            </div>
+            <div class="col-md-10 col-md-offset-1">
                 <button class="float-right btn btn-success add-course">ADD +</button>
             </div>
         </script>
@@ -417,6 +412,13 @@
             </div>
         </script>
 
+        <script type="text/template" class="course-instance-template">
+            <h1><%=courseTitle%></h1>
+            <h3><%=courseInstructor%></h3>
+            <p><%=courseDescription%></p>
+            <img src="<%=courseImage%>"/>
+        </script>
+
         <script type="text/template" class="instructors-admin-template">
             <nav class="navbar navbar-default navbar-admin">
               <div class="container-fluid">
@@ -428,7 +430,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="#">Brand</a>
+                  
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->

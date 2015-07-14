@@ -4,11 +4,13 @@ var CoursesAdminPage = Parse.View.extend ({
     'click .edit-profile-button'      : 'toggleEditAttribute',
     'click .save-profile-edit-button' : 'saveProfileEdit',
     'change #myFile'              : 'readURL',
-    // 'click .input-group-addon'  : 'saveProfileEdit',
+    'click .add-course'           : 'addCourse',
+    'click .cancel-add'           : 'cancelAddCourse'
   },
 
   template: _.template($('.courses-admin-template').text()),
   detailTemplate: _.template($('.course-detail-template').text()),
+  courseInstanceTemplate: _.template($('.course-instance-template').text()),
 
 
     initialize: function() {
@@ -26,11 +28,33 @@ var CoursesAdminPage = Parse.View.extend ({
           $('#logo-img').attr('src', Parse.User.current().get('logo')._url);
         }
         this.readURL;
-        $('.courses-list-container').prepend(this.detailTemplate);
+        this.getCourses();
       }
     },
 
     render: function() {
+    },
+
+    getCourses: function () {
+      var that = this;
+      var query = new Parse.Query('courseInstance');
+      query.limit(1500);
+      query.find({
+        success: function(course){
+          for(i=0;i<course.length;i++){
+            $('.courses-list-container').prepend(that.courseInstanceTemplate({
+              courseTitle: course[i].attributes.courseTitle,
+              courseInstructor: course[i].attributes.courseInstructor,
+              courseDescription: course[i].attributes.courseDescription,
+              courseImage: course[i].attributes.logo._url
+            }));
+          }
+        },
+
+        error: function(error) {
+          console.log('threw an error');
+        }
+      })
     },
 
     readURL: function(){
@@ -104,5 +128,18 @@ var CoursesAdminPage = Parse.View.extend ({
       $('.course-instructor-input').prop('placeholder', Parse.User.current().get('courseInstructor'))
       $('.course-description-textarea').prop('placeholder', Parse.User.current().get('courseDescription'))
     },
+
+    addCourse: function(){
+      $('.add-course').text('CANCEL').addClass('cancel-add').removeClass('add-course')
+      $('.course-add-container').prepend(this.detailTemplate);
+      this.toggleEditAttribute();
+    },
+
+    cancelAddCourse: function() {
+      $('.cancel-add').text('ADD +').addClass('add-course').removeClass('cancel-add')
+      $('.course-add-container').html('')
+      this.toggleEditAttribute();
+      $("html, body").scrollTop(0);
+    }
 
 });

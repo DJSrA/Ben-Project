@@ -44,25 +44,21 @@ var AppRouter = Parse.Router.extend({
 	adminPage: function() {
 		this.swap( new AdminPage({router: this}));
 		new NavbarView({router: this});
-		new FooterView({router: this});
 	},
 
 	adminAboutPage: function () {
 		this.swap( new AboutAdminPage({router: this}));
 		new NavbarView({router: this});
-		new FooterView({router: this});
 	},
 
 	adminCoursesPage: function () {
 		this.swap( new CoursesAdminPage({router: this}));
 		new NavbarView({router: this});
-		new FooterView({router: this});
 	},
 
 	adminInstructorsPage: function () {
 		this.swap( new InstructorsAdminPage({router: this}));
 		new NavbarView({router: this});
-		new FooterView({router: this});
 	},
 
 	swap: function (view) {
