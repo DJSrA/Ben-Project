@@ -2,7 +2,13 @@ var AppRouter = Parse.Router.extend({
 	
 	routes: {
 		''										: 'landingPage',
-		'about'								: 'aboutPage'
+		'about'								: 'aboutPage',
+		'sign-in'							: 'signInPage',
+		'sign-up'							: 'signUpPage',
+		'admin'								: 'adminPage',
+		'admin/about'					: 'adminAboutPage',
+		'admin/courses'				: 'adminCoursesPage',
+		'admin/instructors'		: 'adminInstructorsPage'
 	},
 
 	initialize: function(){
@@ -19,6 +25,42 @@ var AppRouter = Parse.Router.extend({
 
 	aboutPage: function() {
 		this.swap( new AboutView({router: this}) );
+		new NavbarView({router: this});
+		new FooterView({router: this});
+	},
+
+	signInPage: function() {
+		this.swap( new SignInPage({router: this}) );
+		new NavbarView({router: this});
+		new FooterView({router: this});
+	},
+
+	signUpPage: function() {
+		this.swap( new SignUpPage({router: this}) );
+		new NavbarView({router: this});
+		new FooterView({router: this});
+	},
+
+	adminPage: function() {
+		this.swap( new AdminPage({router: this}));
+		new NavbarView({router: this});
+		new FooterView({router: this});
+	},
+
+	adminAboutPage: function () {
+		this.swap( new AboutAdminPage({router: this}));
+		new NavbarView({router: this});
+		new FooterView({router: this});
+	},
+
+	adminCoursesPage: function () {
+		this.swap( new CoursesAdminPage({router: this}));
+		new NavbarView({router: this});
+		new FooterView({router: this});
+	},
+
+	adminInstructorsPage: function () {
+		this.swap( new InstructorsAdminPage({router: this}));
 		new NavbarView({router: this});
 		new FooterView({router: this});
 	},
