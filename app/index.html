@@ -151,6 +151,7 @@
                 <div class="schedule-template-container col-xs-4">
                     <h1 class="header-txt-lg-dark">SCHEDULE</h1>
                     <hr/>
+                    <div class="schedule-body-text"><p><%=Parse.User.current().get('ScheduleBody')%></p></div>
                 </div>
             </div>
         </script>
@@ -582,7 +583,7 @@
 
         <script type="text/template" class="current-locations-live-template">
             <div class="col-md-6 current-location-item">
-                <div class="location-admin-container"
+                <div class="location-admin-container">
                     <h3><%=locationName%></h3>
                     <p><%=locationEmail%></p>
                     <p><%=locationPhone%></p>
@@ -633,6 +634,24 @@
                 <button class="btn btn-default save-profile-edit-button float-right">SAVE</button>
                 <button class="btn btn-default edit-profile-button float-right">EDIT</button>
             </div>
+            <div class="profile-page-container col-xs-10 col-md-offset-1">
+                <div class="col-md-6">
+                    <div class="form-group sign-in-form col-md-12">
+                        <label>SCHEDULE TITLE</label>
+                        <div class="input-group col-md-12">
+                            <input id="item-info-block" class="profile-edit form-control schedule-title-input" placeholder="<%=Parse.User.current().get('scheduleTitle')%>" disabled="true"></input>
+                        </div>
+                    </div>
+                </div>  
+                <div class="col-md-12">
+                    <div class="form-group sign-in-form col-md-12">
+                        <label>SCHEDULE TEXT</label>
+                        <div class="input-group col-md-12">
+                            <textarea id="item-info-block" class="form-control profile-edit schedule-body-textarea" placeholder="<%=Parse.User.current().get('ScheduleBody')%>" disabled="true"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </script>
 
         <script type="text/template" class="instructors-admin-container-template">
@@ -666,8 +685,12 @@
               </div><!-- /.container-fluid -->
             </nav>
             <div class="col-md-10 col-md-offset-1">
-                <button class="btn btn-default save-profile-edit-button float-right">SAVE</button>
-                <button class="btn btn-default edit-profile-button float-right">EDIT</button>
+                <button class="btn btn-default add-course">ADD +</button>
+                <button class="float-right btn btn-default edit-profile-button">EDIT</button>
+            </div>
+            <div class="course-add-container col-md-10 col-md-offset-1">
+            </div>
+            <div class="courses-list-container col-md-10 col-md-offset-1">
             </div>
         </script>
 

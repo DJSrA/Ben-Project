@@ -2,7 +2,7 @@ var ScheduleAdminPage = Parse.View.extend ({
 
   events: {
     'click .edit-profile-button'      : 'toggleEditAttribute',
-    // 'click .save-profile-edit-button' : 'saveNewLocation'
+    'click .save-profile-edit-button' : 'saveProfileEdit',
   },
 
   template: _.template($('.schedule-admin-container-template').text()),
@@ -24,29 +24,6 @@ var ScheduleAdminPage = Parse.View.extend ({
       $('.create-locations-container').append(this.template());
     },
 
-    // getLocations: function () {
-    //   $('.all-locations-container').html('');
-    //   var that = this;
-    //   var query = new Parse.Query('locationInstance');
-    //   query.limit(1500);
-    //   query.find({
-    //     success: function(location){
-    //       for(i=0;i<location.length;i++){
-    //         $('.all-locations-container').prepend(that.currentTemplate({
-    //           locationName: location[i].attributes.locationName,
-    //           locationEmail: location[i].attributes.locationEmail,
-    //           locationPhone: location[i].attributes.locationPhone,
-    //           locationAddress: location[i].attributes.locationAddress,
-    //         }));
-    //       }
-    //     },
-
-    //     error: function(error) {
-    //       console.log('threw an error');
-    //     }
-    //   })
-    // },
-
     toggleEditAttribute: function(){
       if($(event.target).hasClass('active')){
         _.each($('.profile-edit'), function(){
@@ -61,20 +38,18 @@ var ScheduleAdminPage = Parse.View.extend ({
       }
     },
 
-    // saveNewLocation: function() {
-    //   var that = this;
-
-    //   var LocationInstance = Parse.Object.extend("locationInstance");
-    //   var locationInstance = new LocationInstance();
-
-    //   locationInstance.set({
-    //     locationName: $('.company-input').val(),
-    //     locationEmail: $('.email-input').val(),
-    //     locationPhone: $('.phone-input').val(),
-    //     locationAddress: $('.address-input').val()
-    //   }).save().then(function(){
-    //     that.getLocations();
-    //   })
-    // }
+    saveProfileEdit: function () {
+      var that = this;
+      var text = $('.schedule-body-textarea').val();
+      text = text.replace(/\r?\n/g, '<br/>');
+      Parse.User.current().set({
+        scheduleTitle:   ($('.schedule-title-input').val().length != 0 ? $('.schedule-title-input').val() : Parse.User.current().get('scheduleTitle')),
+        ScheduleBody:    ($('.schedule-body-textarea').val().trim().length != 0 ? $('.schedule-body-textarea').val() : Parse.User.current().get('scheduleBody')),
+      }).save();
+      $('.edit-profile-button').click();
+      $('.profile-edit').val('');
+      $('.schedule-body-textarea').prop('placeholder', Parse.User.current().get('scheduleBody')),
+      $('.schedule-title-input').prop('placeholder', Parse.User.current().get('scheduleTitle'))
+    },
 
 });

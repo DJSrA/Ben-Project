@@ -4,6 +4,7 @@
 }
 
 .course-detail-container {
+  border-radius: 3px;
   .save-course-update-button {
     margin-right: 15px;
   }
@@ -11,10 +12,10 @@
 
 .schedule-template-container {
   padding: 10px;
-  height: 100vh;
   background: #FFFFFF;
   border: 1px solid #ccc;
   margin-bottom: 15px;
+  border-radius: 3px;
   box-shadow: 0px 2px 2px -1px #171717;
   margin-top: 40px;
   margin-bottom: 15px;
