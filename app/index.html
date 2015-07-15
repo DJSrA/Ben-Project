@@ -155,6 +155,15 @@
             </div>
         </script>
 
+        <script type="text/template" class="instructors-page-template">
+        <div class="header-background-image"></div>
+
+            <div class="instructors-list-container col-md-12">
+                <h1 class="header-txt-lg">INSTRUCTORS</h1>
+                <div class="instructors-template-list-container col-xs-10 col-md-offset-1"></div>
+            </div>
+        </script>
+
         <script type="text/template" class="sign-in-template">
             <div class="sign-in-container col-md-6 col-md-offset-3">
             
@@ -590,6 +599,77 @@
             </div>
         </script>
 
+        <script type="text/template" class="schedule-admin-container-template">
+            <nav class="navbar navbar-default navbar-admin navbar-fixed-top">
+              <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+                  <li class="company-edit"><a onClick="router.navigate('#admin',{trigger:true})">Company <span class="sr-only">(current)</span></a></li>
+                  <li class="about-edit"><a onClick="router.navigate('#admin/about',{trigger:true})">About <span class="sr-only">(current)</span></a></li>
+                  <li class="courses-edit"><a onClick="router.navigate('#admin/courses',{trigger:true})">Courses <span class="sr-only">(current)</span></a></li>
+                  <li class="locations-edit"><a onClick="router.navigate('#admin/locations',{trigger:true})">Locations <span class="sr-only">(current)</span></a></li>
+                  <li class="active schedule-edit"><a onClick="router.navigate('#admin/schedule',{trigger:true})">Schedule <span class="sr-only">(current)</span></a></li>
+                  <li class="instructors-edit"><a onClick="router.navigate('#admin/instructors',{trigger:true})">Instructors <span class="sr-only">(current)</span></a></li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                    <li class="logOut-nav"><a onClick="router.navigate('#',{trigger:true})">LOG OUT</a></li>
+                  </ul>
+                </div><!-- /.navbar-collapse -->
+              </div><!-- /.container-fluid -->
+            </nav>
+            <div class="col-md-10 col-md-offset-1">
+                <button class="btn btn-default save-profile-edit-button float-right">SAVE</button>
+                <button class="btn btn-default edit-profile-button float-right">EDIT</button>
+            </div>
+        </script>
+
+        <script type="text/template" class="instructors-admin-container-template">
+            <nav class="navbar navbar-default navbar-admin navbar-fixed-top">
+              <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+                  <li class="company-edit"><a onClick="router.navigate('#admin',{trigger:true})">Company <span class="sr-only">(current)</span></a></li>
+                  <li class="about-edit"><a onClick="router.navigate('#admin/about',{trigger:true})">About <span class="sr-only">(current)</span></a></li>
+                  <li class="courses-edit"><a onClick="router.navigate('#admin/courses',{trigger:true})">Courses <span class="sr-only">(current)</span></a></li>
+                  <li class="locations-edit"><a onClick="router.navigate('#admin/locations',{trigger:true})">Locations <span class="sr-only">(current)</span></a></li>
+                  <li class="schedule-edit"><a onClick="router.navigate('#admin/schedule',{trigger:true})">Schedule <span class="sr-only">(current)</span></a></li>
+                  <li class="active instructors-edit"><a onClick="router.navigate('#admin/instructors',{trigger:true})">Instructors <span class="sr-only">(current)</span></a></li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                    <li class="logOut-nav"><a onClick="router.navigate('#',{trigger:true})">LOG OUT</a></li>
+                  </ul>
+                </div><!-- /.navbar-collapse -->
+              </div><!-- /.container-fluid -->
+            </nav>
+            <div class="col-md-10 col-md-offset-1">
+                <button class="btn btn-default save-profile-edit-button float-right">SAVE</button>
+                <button class="btn btn-default edit-profile-button float-right">EDIT</button>
+            </div>
+        </script>
 
         
 
@@ -630,6 +710,7 @@
         <script src="scripts/navbar-view.js"></script>
         <script src="scripts/courses-view.js"></script>
         <script src="scripts/locations-view.js"></script>
+        <script src="scripts/instructors-view.js"></script>
         <script src="scripts/about-view.js"></script>
         <script src="scripts/footer-view.js"></script>
         <script src="scripts/sign-in-view.js"></script>
@@ -638,6 +719,8 @@
         <script src="scripts/about-admin-view.js"></script>
         <script src="scripts/courses-admin-view.js"></script>
         <script src="scripts/locations-admin-view.js"></script>
+        <script src="scripts/schedule-admin-view.js"></script>
+        <script src="scripts/instructors-admin-view.js"></script>
 
         <!-- Latest compiled and minified JavaScript -->
         
