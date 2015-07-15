@@ -5,7 +5,8 @@ var CoursesAdminPage = Parse.View.extend ({
     'click .save-profile-edit-button' : 'saveProfileEdit',
     'change #myFile'              : 'readURL',
     'click .add-course'           : 'addCourse',
-    'click .cancel-add'           : 'cancelAddCourse'
+    'click .cancel-add'           : 'cancelAddCourse',
+    'click .save-course-update-button' : 'updateCourse'
   },
 
   template: _.template($('.courses-admin-template').text()),
@@ -84,6 +85,7 @@ var CoursesAdminPage = Parse.View.extend ({
         _.each($('.profile-edit'), function(){
           $('.profile-edit').prop('disabled', 'disabled');
           $('.delete-class').prop('disabled', true);
+          $('.save-course-update-button').prop('disabled', true);
         })
         // $('.save-profile-edit-button').css('opacity', 0);
         $(event.target).removeClass('active');
@@ -91,6 +93,8 @@ var CoursesAdminPage = Parse.View.extend ({
         _.each($('.profile-edit'), function(){
           $('.profile-edit').prop('disabled', false);
           $('.delete-class').prop('disabled', false);
+          $('.save-course-update-button').prop('disabled', false);
+
 
         })
         // $('.save-profile-edit-button').css('opacity', 1);
@@ -146,6 +150,91 @@ var CoursesAdminPage = Parse.View.extend ({
       $('.course-title-input').prop('placeholder', Parse.User.current().get('courseTitle')),
       $('.course-instructor-input').prop('placeholder', Parse.User.current().get('courseInstructor'))
       $('.course-description-textarea').prop('placeholder', Parse.User.current().get('courseDescription'))
+    },
+
+    updateCourse: function (){
+      var courseId = event.target.id;
+      // console.log($('#' + courseId + '').find('input')[0])
+      // _.each($('#' + courseId + '').find('input'), function(input){
+      //   console.log(input);
+      //   if($(input).hasClass('course-title-input')){
+
+      //   }
+      // })
+      var photoUpload = function() {
+        //original photo upload function
+
+        var fileUploadControl = $("#myFile")[0];
+        if (fileUploadControl.files.length > 0) {
+          var file = fileUploadControl.files[0];
+          var name = "photo.jpg";
+         
+          return new Parse.File(name, file);
+        } 
+        // else if (fileUploadControl.files.length === 0) {
+        //   return Parse.User.current().get('photo');
+        // };
+      }
+      _.each($('.course-detail-container'), function(courseContainer){
+          if(courseContainer.id == courseId){
+            var title = $(courseContainer).find('input.course-title-input')[0].value.length
+            console.log(title);
+            // console.log($(title).selector.val())
+            var query = new Parse.Query('courseInstance');
+            query.equalTo('objectId', courseId)
+            query.limit(1500);
+            query.find({
+              success: function(course){
+                console.log(course);
+
+                course[0].set({
+                  courseTitle: ($(courseContainer).find('input.course-title-input')[0].value.length > 0 ?  $(courseContainer).find('input.course-title-input')[0].value : course[0].get('courseTitle')),
+                  courseInstructor: ($(courseContainer).find('input.course-instructor-input')[0].value.length > 0 ?  $(courseContainer).find('input.course-instructor-input')[0].value : course[0].get('courseInstructor')),
+                  courseDescription: ($(courseContainer).find('textarea.course-description-textarea')[0].value.length > 0 ?  $(courseContainer).find('textarea.course-description-textarea')[0].value : course[0].get('courseDescription')),
+                  logo: (photoUpload() != undefined ? photoUpload() : course[0].get('logo'))
+                }).save().then(function(){
+                  router.navigate('#admin/courses',{trigger:true})
+                })
+                console.log(course[0].attributes)
+                console.log($('' + $(course).selector + '').val())
+              },
+              error: function(error){
+                console.log('no course was found');
+              }
+            })
+            
+          }
+      })
+      // var that = this;
+
+
+
+      // var photoUpload = function() {
+      //   //original photo upload function
+
+      //   var fileUploadControl = $("#myFile")[0];
+      //   if (fileUploadControl.files.length > 0) {
+      //     var file = fileUploadControl.files[0];
+      //     var name = "photo.jpg";
+         
+      //     return new Parse.File(name, file);
+      //   } 
+      //   // else if (fileUploadControl.files.length === 0) {
+      //   //   return Parse.User.current().get('photo');
+      //   // };
+      // }
+      // courseInstance.set({
+      //   courseTitle:      ($('.course-title-input').val().length != 0 ? $('.course-title-input').val() : Parse.User.current().get('courseTitle')),
+      //   courseInstructor:        ($('.course-instructor-input').val().length != 0 ? $('.course-instructor-input').val() : Parse.User.current().get('courseInstructor')),
+      //   courseDescription:    ($('.course-description-textarea').val().trim().length != 0 ? $('.course-description-textarea').val() : Parse.User.current().get('courseDescription')),
+      //   logo:         (photoUpload() != undefined ? photoUpload() : Parse.User.current().get('logo')),
+      // }).save();
+      // console.log(photoUpload());
+      // $('.edit-profile-button').click();
+      // $('.profile-edit').val('');
+      // $('.course-title-input').prop('placeholder', Parse.User.current().get('courseTitle')),
+      // $('.course-instructor-input').prop('placeholder', Parse.User.current().get('courseInstructor'))
+      // $('.course-description-textarea').prop('placeholder', Parse.User.current().get('courseDescription'))
     },
 
     addCourse: function(){

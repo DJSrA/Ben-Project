@@ -68,9 +68,11 @@
         </script>
 
         <script type="text/template" class="landing-page-template">
-            <div class="text-container header-background-image col-md-12">
+        <div class="header-background-image"></div>
+            <div class="text-container col-md-12">
                 <h1 class="header-txt-lg col-md-12 col-offset-md-3">YOUR DOJO</h1>
                 <p class="header-txt-p col-md-12 col-offset-md-3">Discover Self-Defense, Fitness & Fulfillment... </p>
+                <button class="about about-header-button">LEARN MORE</button>
                 <i class="fa fa-chevron-down"></i>
             </div>
         </script>
@@ -140,7 +142,11 @@
         </script>
 
         <script type="text/template" class="courses-page-template">
-            <div class="courses-template-list-container col-xs-10 col-md-offset-1"></div>
+        <div class="header-background-image"></div>
+
+            <div class="course-list-container col-md-12">
+                <div class="courses-template-list-container col-xs-10 col-md-offset-1"></div>
+            </div>
         </script>
 
         <script type="text/template" class="sign-in-template">
@@ -219,7 +225,7 @@
                     <li class="active company-edit"><a onClick="router.navigate('#admin',{trigger:true})">Company <span class="sr-only">(current)</span></a></li>
                     <li class="about-edit"><a onClick="router.navigate('#admin/about',{trigger:true})">About <span class="sr-only">(current)</span></a></li>
                     <li class="courses-edit"><a onClick="router.navigate('#admin/courses',{trigger:true})">Courses <span class="sr-only">(current)</span></a></li>
-                    <li class="locations-edit"><a onClick="router.navigate('#admin/locations',{trigger:true})">Courses <span class="sr-only">(current)</span></a></li>
+                    <li class="locations-edit"><a onClick="router.navigate('#admin/locations',{trigger:true})">Locations <span class="sr-only">(current)</span></a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                     <li class="logOut-nav"><a onClick="router.navigate('#',{trigger:true})">LOG OUT</a></li>
@@ -295,6 +301,7 @@
                   <li class="company-edit"><a onClick="router.navigate('#admin',{trigger:true})">Company <span class="sr-only">(current)</span></a></li>
                   <li class="active about-edit"><a onClick="router.navigate('#admin/about',{trigger:true})">About <span class="sr-only">(current)</span></a></li>
                   <li class="courses-edit"><a onClick="router.navigate('#admin/courses',{trigger:true})">Courses <span class="sr-only">(current)</span></a></li>
+                  <li class="locations-edit"><a onClick="router.navigate('#admin/locations',{trigger:true})">Locations <span class="sr-only">(current)</span></a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                     <li class="logOut-nav"><a onClick="router.navigate('#',{trigger:true})">LOG OUT</a></li>
@@ -346,6 +353,7 @@
                   <li class="company-edit"><a onClick="router.navigate('#admin',{trigger:true})">Company <span class="sr-only">(current)</span></a></li>
                   <li class="about-edit"><a onClick="router.navigate('#admin/about',{trigger:true})">About <span class="sr-only">(current)</span></a></li>
                   <li class="active courses-edit"><a onClick="router.navigate('#admin/courses',{trigger:true})">Courses <span class="sr-only">(current)</span></a></li>
+                  <li class="locations-edit"><a onClick="router.navigate('#admin/locations',{trigger:true})">Locations <span class="sr-only">(current)</span></a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                     <li class="logOut-nav"><a onClick="router.navigate('#',{trigger:true})">LOG OUT</a></li>
@@ -355,7 +363,6 @@
             </nav>
             <div class="col-md-10 col-md-offset-1">
                 <button class="btn btn-default add-course">ADD +</button>
-                <button class="float-right btn btn-default save-profile-edit-button">SAVE</button>
                 <button class="float-right btn btn-default edit-profile-button">EDIT</button>
             </div>
             <div class="course-add-container col-md-10 col-md-offset-1">
@@ -405,6 +412,7 @@
                     </div>
                 </div>
                 <button class="delete-class float-right btn btn-danger"  id="<%=courseId%>" disabled=true>DELETE</button>
+                <button class="btn btn-default float-right save-course-update-button" id="<%=courseId%>" disabled=true>SAVE</button>
 
             </div>
         </script>

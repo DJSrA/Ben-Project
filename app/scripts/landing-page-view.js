@@ -1,6 +1,7 @@
 var LandingPage = Parse.View.extend ({
 
   events: {
+    "click .about": 'scrollAbout',
   },
 
   template: _.template($('.landing-page-template').text()),
@@ -19,6 +20,12 @@ var LandingPage = Parse.View.extend ({
 
   render: function() {
     $('.template-container').append(this.aboutTemplate);
+  },
+
+  scrollAbout: function () {
+    $('html,body').animate({
+      scrollTop: $(".about-us").offset().top
+    },200);
   },
 
   fillCompanyInfo: function () {
