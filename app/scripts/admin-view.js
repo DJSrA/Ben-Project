@@ -29,23 +29,6 @@ var AdminPage = Parse.View.extend ({
     render: function() {
     },
 
-    getShopInfor: function(){
-      var that = this;
-      var query = new Parse.Query('shopInstance');
-      query.limit(1500);
-      query.find({
-        success: function(shop){
-          if(shop.logo){
-            // console.log(shop.logo('_url');
-            $('#logo-img').attr('src', shop.logo._url);
-          }
-        },
-        error: function(error) {
-          console.log('No shop found. Using Defaults.');
-        }
-      })
-    },
-
     readURL: function(){
       console.log($('#myFile')[0]);
       var x = document.getElementById("myFile");
