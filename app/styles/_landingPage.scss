@@ -75,3 +75,63 @@
   }
 
 }
+
+@media (max-width: 1200px) { 
+    // LANDING PAGE -----------------
+    .brand-logo-img-container {
+      display: none;
+    }
+    .footer {
+      height: 100%;
+      width: 100%;
+    }
+    div.text-container {
+      padding: 12% 15% 38% !important;
+    }
+    .schedule-template-container, .courses-template-list-container , .locations-list{
+      width: 100%;
+    }
+    .header-txt-lg {
+      margin-top: 0;
+      padding-top: 20px;
+    }
+    .col-xs-10 {
+      width: 100%;
+    }
+    .col-md-6, .input-group {
+      width: 100%;
+    }
+    #instructorImage-img, #logo-img {
+      max-width: 225px;
+    }
+}
+
+@media only screen and (min-device-width: 320px) {
+    // LANDING PAGE -----------------
+    .brand-logo-img-container {
+      display: none;
+    }
+    .footer {
+      height: 100%;
+      width: 100%;
+    }
+    div.text-container {
+      padding: 12% 15% 38% !important;
+    }
+    .schedule-template-container, .courses-template-list-container , .locations-list{
+      width: 100%;
+    }
+    .header-txt-lg {
+      margin-top: 0;
+      padding-top: 20px;
+    }
+    .col-xs-10 {
+      width: 100%;
+    }
+    .col-md-6, .input-group {
+      width: 100%;
+    }
+    #instructorImage-img, #logo-img {
+      max-width: 225px;
+    }
+}

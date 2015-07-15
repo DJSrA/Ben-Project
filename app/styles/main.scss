@@ -24,12 +24,17 @@
 p {
   white-space: pre-wrap;
 }
+// @media (min-width: 200px){
+  html {
+    -webkit-font-smoothing: antialiased;
+    // min-width: 1200px !important;
+  }
 
-html {
-  -webkit-font-smoothing: antialiased;
-}
-
-body, html { overflow-x:hidden; }
+  body, html { 
+    overflow-x:hidden; 
+    // min-width: 1200px !important;
+  }
+// }
 
 a {
   outline: none;
