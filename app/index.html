@@ -50,7 +50,6 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-right">
                 <li class="home"><a onClick="router.navigate('#',{trigger:true})">HOME <span class="sr-only">(current)</span></a></li>
-                <li class="about"><a class="about">ABOUT</a></li>
                 <li class="contact-us"><a>CONTACT US</a></li>
                 <li><a href="#courses" onClick="router.navigate('#courses',{trigger:true})">COURSES</a></li>
                 <li><a href="#locations" onClick="router.navigate('#locations',{trigger:true})">LOCATIONS</a></li>
@@ -538,6 +537,18 @@
             <div class="col-xs-10 col-md-offset-1 create-locations-container">
             </div>
             <div class="col-xs-10 col-md-offset-1 all-locations-container">
+            </div>
+        </script>
+
+        <script type="text/template" class="instructors-instance-template">
+            <div class="col-xs-12 instructor-detail-container">
+                <div class='col-xs-3' style="background: url(<%=instructorImage%>) no-repeat center; min-height: 250px; max-height: 340px;">
+                </div>
+                <div class="col-md-9">
+                    <h1><%=instructorName%></h1>
+                    <h3><%=instructorTagline%></h3>
+                    <p><%=instructorBio%></p>
+                </div>
             </div>
         </script>
 
