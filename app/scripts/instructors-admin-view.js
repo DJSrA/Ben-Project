@@ -2,13 +2,17 @@ var InstructorsAdminPage = Parse.View.extend ({
 
   events: {
     'click .edit-profile-button'      : 'toggleEditAttribute',
-    // 'click .save-profile-edit-button' : 'saveNewLocation'
+    'change #myFile'              : 'readURL',
+    'click .add-instructor'           : 'addInstructor',
+    'click .cancel-add'           : 'cancelAddInstructor',
+    'click .save-instructor-update-button' : 'updateInstructor',
+    'click .delete-class' : 'deleteInstructor',
+    'click .save-new-edit-button' : 'saveProfileEdit'
   },
 
   template: _.template($('.instructors-admin-container-template').text()),
-  // template: _.template($('.courses-admin-template').text()),
-  detailTemplate: _.template($('.course-detail-template').text()),
-  courseInstanceTemplate: _.template($('.add-course-detail-template').text()),
+  detailTemplate: _.template($('.instructor-detail-template').text()),
+  instructorInstanceTemplate: _.template($('.add-instructor-detail-template').text()),
 
   initialize: function() {
     if((Parse.User.current() === null) === true){
@@ -18,31 +22,31 @@ var InstructorsAdminPage = Parse.View.extend ({
       $('.template-container').html(this.$el)
       this.$el.html(this.template());
       this.render();
-      if(Parse.User.current().get('logo')){
-        $('#logo-img').attr('src', Parse.User.current().get('logo')._url);
+      if(Parse.User.current().get('instructorImage')){
+        $('#instructorImage-img').attr('src', Parse.User.current().get('instructorImage')._url);
       }
       $('.template-container').css('padding-top', '80px');
       this.readURL;
-      this.getCourses();
+      this.getInstructors();
     }
   },
 
   render: function() {
   },
 
-  getCourses: function () {
+  getInstructors: function () {
     var that = this;
-    var query = new Parse.Query('courseInstance');
+    var query = new Parse.Query('instructorInstance');
     query.limit(1500);
     query.find({
-      success: function(course){
-        for(i=0;i<course.length;i++){
-          $('.courses-list-container').prepend(that.detailTemplate({
-            courseTitle: course[i].attributes.courseTitle,
-            courseInstructor: course[i].attributes.courseInstructor,
-            courseDescription: course[i].attributes.courseDescription,
-            courseImage: course[i].attributes.logo._url,
-            courseId: course[i].id
+      success: function(instructor){
+        for(i=0;i<instructor.length;i++){
+          $('.instructor-list-container').prepend(that.detailTemplate({
+            instructorName: instructor[i].attributes.instructorName,
+            instructorTagline: instructor[i].attributes.instructorTagline,
+            instructorBio: instructor[i].attributes.instructorBio,
+            instructorImage: instructor[i].attributes.instructorImage._url,
+            instructorId: instructor[i].id
           }));
         }
       },
@@ -61,7 +65,7 @@ var InstructorsAdminPage = Parse.View.extend ({
       Reader.readAsDataURL(x.files[0]);
 
       Reader.onload = function (Event) {
-          document.getElementById("logo-img").src = Event.target.result;
+          document.getElementById("instructorImage-img").src = Event.target.result;
       };
     } 
     else {
@@ -79,14 +83,14 @@ var InstructorsAdminPage = Parse.View.extend ({
       _.each($('.profile-edit'), function(){
         $('.profile-edit').prop('disabled', 'disabled');
         $('.delete-class').prop('disabled', true);
-        $('.save-course-update-button').prop('disabled', true);
+        $('.save-instructor-update-button').prop('disabled', true);
       })
       $(event.target).removeClass('active');
     }else {
       _.each($('.profile-edit'), function(){
         $('.profile-edit').prop('disabled', false);
         $('.delete-class').prop('disabled', false);
-        $('.save-course-update-button').prop('disabled', false);
+        $('.save-instructor-update-button').prop('disabled', false);
 
 
       })
@@ -94,7 +98,7 @@ var InstructorsAdminPage = Parse.View.extend ({
     }
   },
 
-  toggleAddCourseEdit: function(){
+  toggleAddInstructorEdit: function(){
     if($(event.target).hasClass('active')){
       _.each($('.profile-edit'), function(){
         $('.profile-edit').prop('disabled', 'disabled');
@@ -111,8 +115,8 @@ var InstructorsAdminPage = Parse.View.extend ({
   saveProfileEdit: function () {
     var that = this;
 
-    var CourseInstance = Parse.Object.extend("courseInstance");
-    var courseInstance = new CourseInstance();
+    var InstructorInstance = Parse.Object.extend("instructorInstance");
+    var instructorInstance = new InstructorInstance();
 
     var photoUpload = function() {
       //original photo upload function
@@ -125,26 +129,27 @@ var InstructorsAdminPage = Parse.View.extend ({
         return new Parse.File(name, file);
       } 
     }
-    courseInstance.set({
-      courseTitle:      ($('.course-title-input').val().length != 0 ? $('.course-title-input').val() : Parse.User.current().get('courseTitle')),
-      courseInstructor:        ($('.course-instructor-input').val().length != 0 ? $('.course-instructor-input').val() : Parse.User.current().get('courseInstructor')),
-      courseDescription:    ($('.course-description-textarea').val().trim().length != 0 ? $('.course-description-textarea').val() : Parse.User.current().get('courseDescription')),
-      logo:         (photoUpload() != undefined ? photoUpload() : Parse.User.current().get('logo')),
+    instructorInstance.set({
+      instructorName:      ($('.instructor-name-input').val().length != 0 ? $('.instructor-name-input').val() : Parse.User.current().get('instructorName')),
+      instructorTagline:        ($('.instructor-tagline-input').val().length != 0 ? $('.instructor-tagline-input').val() : Parse.User.current().get('instructorTagline')),
+      instructorBio:    ($('.instructor-bio-textarea').val().trim().length != 0 ? $('.instructor-bio-textarea').val() : Parse.User.current().get('instructorBio')),
+      instructorImage:         (photoUpload() != undefined ? photoUpload() : Parse.User.current().get('instructorImage')),
     }).save().then(function(){
-      that.cancelAddCourse()
-      $('.courses-list-container').html('')
-      that.getCourses();
+        console.log(instructorInstance)
+      that.cancelAddInstructor()
+      $('.instructor-list-container').html('')
+      that.getInstructors();
     });
 
     $('.edit-profile-button').click();
     $('.profile-edit').val('');
-    $('.course-title-input').prop('placeholder', Parse.User.current().get('courseTitle')),
-    $('.course-instructor-input').prop('placeholder', Parse.User.current().get('courseInstructor'))
-    $('.course-description-textarea').prop('placeholder', Parse.User.current().get('courseDescription'))
+    $('.instructor-name-input').prop('placeholder', Parse.User.current().get('instructorName')),
+    $('.instructor-tagline-input').prop('placeholder', Parse.User.current().get('instructorTagline'))
+    $('.instructor-bio-textarea').prop('placeholder', Parse.User.current().get('instructorBio'))
   },
 
-  updateCourse: function (){
-    var courseId = event.target.id;
+  updateInstructor: function (){
+    var instructorId = event.target.id;
     var photoUpload = function() {
       //original photo upload function
 
@@ -156,25 +161,25 @@ var InstructorsAdminPage = Parse.View.extend ({
         return new Parse.File(name, file);
       } 
     }
-    _.each($('.course-detail-container'), function(courseContainer){
-        if(courseContainer.id == courseId){
-          var query = new Parse.Query('courseInstance');
-          query.equalTo('objectId', courseId)
+    _.each($('.instructor-detail-container'), function(instructorContainer){
+        if(instructorContainer.id == instructorId){
+          var query = new Parse.Query('instructorInstance');
+          query.equalTo('objectId', instructorId)
           query.limit(1500);
           query.find({
-            success: function(course){
+            success: function(instructor){
 
-              course[0].set({
-                courseTitle: ($(courseContainer).find('input.course-title-input')[0].value.length > 0 ?  $(courseContainer).find('input.course-title-input')[0].value : course[0].get('courseTitle')),
-                courseInstructor: ($(courseContainer).find('input.course-instructor-input')[0].value.length > 0 ?  $(courseContainer).find('input.course-instructor-input')[0].value : course[0].get('courseInstructor')),
-                courseDescription: ($(courseContainer).find('textarea.course-description-textarea')[0].value.length > 0 ?  $(courseContainer).find('textarea.course-description-textarea')[0].value : course[0].get('courseDescription')),
-                logo: (photoUpload() != undefined ? photoUpload() : course[0].get('logo'))
+              instructor[0].set({
+                instructorName: ($(instructorContainer).find('input.instructor-name-input')[0].value.length > 0 ?  $(instructorContainer).find('input.instructor-name-input')[0].value : instructor[0].get('instructorName')),
+                instructorTagline: ($(instructorContainer).find('input.instructor-tagline-input')[0].value.length > 0 ?  $(instructorContainer).find('input.instructor-tagline-input')[0].value : instructor[0].get('instructorTagline')),
+                instructorBio: ($(instructorContainer).find('textarea.instructor-bio-textarea')[0].value.length > 0 ?  $(instructorContainer).find('textarea.instructor-bio-textarea')[0].value : instructor[0].get('instructorBio')),
+                instructorImage: (photoUpload() != undefined ? photoUpload() : instructor[0].get('instructorImage'))
               }).save().then(function(){
-                router.swap( new CoursesAdminPage() );
+                router.swap( new InstructorsAdminPage() );
               })
             },
             error: function(error){
-              console.log('no course was found');
+              console.log('no instructor was found');
             }
           })
           
@@ -182,22 +187,22 @@ var InstructorsAdminPage = Parse.View.extend ({
     })
   },
 
-  addCourse: function(){
-    $('.add-course').text('CANCEL').addClass('cancel-add').removeClass('add-course')
-    $('.course-add-container').prepend(this.courseInstanceTemplate);
+  addInstructor: function(){
+    $('.add-instructor').text('CANCEL').addClass('cancel-add').removeClass('add-instructor')
+    $('.instructor-add-container').prepend(this.instructorInstanceTemplate);
     this.toggleEditAttribute();
   },
 
-  deleteCourse: function(){
+  deleteInstructor: function(){
     var that = this;
-    var thisCourse = $(event.target).prop('id');
-    var query = new Parse.Query('courseInstance');
+    var thisInstructor = $(event.target).prop('id');
+    var query = new Parse.Query('instructorInstance');
     query.limit(1500);
-    query.equalTo('objectId', thisCourse);
+    query.equalTo('objectId', thisInstructor);
     query.find({
-      success: function(course){
-        course[0].destroy()
-        $('div#' + thisCourse + '').remove();
+      success: function(instructor){
+        instructor[0].destroy()
+        $('div#' + thisInstructor + '').remove();
         that.toggleEditAttribute();
 
       },
@@ -208,9 +213,9 @@ var InstructorsAdminPage = Parse.View.extend ({
     })
   },
 
-  cancelAddCourse: function() {
-    $('.cancel-add').text('ADD +').addClass('add-course').removeClass('cancel-add')
-    $('.course-add-container').html('')
+  cancelAddInstructor: function() {
+    $('.cancel-add').text('ADD +').addClass('add-instructor').removeClass('cancel-add')
+    $('.instructor-add-container').html('')
     this.toggleEditAttribute();
     $("html, body").scrollTop(0);
   }

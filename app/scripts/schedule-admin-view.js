@@ -42,14 +42,17 @@ var ScheduleAdminPage = Parse.View.extend ({
       var that = this;
       var text = $('.schedule-body-textarea').val();
       text = text.replace(/\r?\n/g, '<br/>');
-      Parse.User.current().set({
-        scheduleTitle:   ($('.schedule-title-input').val().length != 0 ? $('.schedule-title-input').val() : Parse.User.current().get('scheduleTitle')),
-        ScheduleBody:    ($('.schedule-body-textarea').val().trim().length != 0 ? $('.schedule-body-textarea').val() : Parse.User.current().get('scheduleBody')),
+      var ScheduleInstance = Parse.Object.extend("scheduleInstance");
+      var scheduleInstance = new ScheduleInstance();
+
+      scheduleInstance.set({
+        scheduleTitle:   ($('.schedule-title-input').val().length != 0 ? $('.schedule-title-input').val() : scheduleInstance.scheduleTitle),
+        scheduleBody:    ($('.schedule-body-textarea').val().trim().length != 0 ? $('.schedule-body-textarea').val() : scheduleInstance.scheduleBody),
       }).save();
       $('.edit-profile-button').click();
       $('.profile-edit').val('');
-      $('.schedule-body-textarea').prop('placeholder', Parse.User.current().get('scheduleBody')),
-      $('.schedule-title-input').prop('placeholder', Parse.User.current().get('scheduleTitle'))
+      $('.schedule-body-textarea').prop('placeholder', scheduleInstance.scheduleBody)
+      $('.schedule-title-input').prop('placeholder', scheduleInstance.scheduleTitle)
     },
 
 });

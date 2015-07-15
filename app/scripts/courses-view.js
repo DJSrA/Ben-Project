@@ -5,6 +5,7 @@ var CoursesView = Parse.View.extend ({
 
   template: _.template($('.courses-page-template').text()),
   courseInstanceTemplate: _.template($('.course-instance-template').text()),
+  scheduleInstanceTemplate: _.template($('.schedule-instance-template').text()),
 
 
   initialize: function() {
@@ -14,6 +15,7 @@ var CoursesView = Parse.View.extend ({
     $('.template-container').html(this.$el)
     this.$el.html(this.template());
     this.getCourses();
+    this.getSchedule();
 
   },
 
@@ -29,6 +31,26 @@ var CoursesView = Parse.View.extend ({
             courseInstructor: course[i].attributes.courseInstructor,
             courseDescription: course[i].attributes.courseDescription,
             courseImage: course[i].attributes.logo._url
+          }));
+        }
+      },
+
+      error: function(error) {
+        console.log('threw an error');
+      }
+    })
+  },
+
+  getSchedule: function () {
+    var that = this;
+    var query = new Parse.Query('scheduleInstance');
+    query.limit(1500);
+    query.find({
+      success: function(schedule){
+        for(i=0;i<schedule.length;i++){
+          $('.schedule-template-container').append(that.scheduleInstanceTemplate({
+            scheduleTitle: schedule[i].attributes.scheduleTitle,
+            scheduleBody: schedule[i].attributes.scheduleBody,
           }));
         }
       },
