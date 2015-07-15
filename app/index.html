@@ -54,6 +54,7 @@
                 <li class="contact-us"><a>CONTACT US</a></li>
                 <li><a href="#courses" onClick="router.navigate('#courses',{trigger:true})">COURSES</a></li>
                 <li><a href="#locations" onClick="router.navigate('#locations',{trigger:true})">LOCATIONS</a></li>
+                <li><a href="#instructors" onClick="router.navigate('#instructors',{trigger:true})">INSTRUCTORS</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
               </ul>
@@ -145,7 +146,12 @@
         <div class="header-background-image"></div>
 
             <div class="course-list-container col-md-12">
-                <div class="courses-template-list-container col-xs-10 col-md-offset-1"></div>
+                <h1 class="header-txt-lg">COURSES</h1>
+                <div class="courses-template-list-container col-xs-8"></div>
+                <div class="schedule-template-container col-xs-4">
+                    <h1 class="header-txt-lg-dark">SCHEDULE</h1>
+                    <hr/>
+                </div>
             </div>
         </script>
 
@@ -226,6 +232,8 @@
                     <li class="about-edit"><a onClick="router.navigate('#admin/about',{trigger:true})">About <span class="sr-only">(current)</span></a></li>
                     <li class="courses-edit"><a onClick="router.navigate('#admin/courses',{trigger:true})">Courses <span class="sr-only">(current)</span></a></li>
                     <li class="locations-edit"><a onClick="router.navigate('#admin/locations',{trigger:true})">Locations <span class="sr-only">(current)</span></a></li>
+                    <li class="schedule-edit"><a onClick="router.navigate('#admin/schedule',{trigger:true})">Schedule <span class="sr-only">(current)</span></a></li>
+                    <li class="instructors-edit"><a onClick="router.navigate('#admin/instructors',{trigger:true})">Instructors <span class="sr-only">(current)</span></a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                     <li class="logOut-nav"><a onClick="router.navigate('#',{trigger:true})">LOG OUT</a></li>
@@ -237,7 +245,7 @@
                 <button class="btn btn-default save-profile-edit-button float-right">SAVE</button>
                 <button class="btn btn-default edit-profile-button float-right">EDIT</button>
             </div>
-            <div class="profile-page-container col-md-12">
+            <div class="profile-page-container col-xs-10 col-md-offset-1">
                 <div class="col-md-6">
                     <div class="form-group sign-in-form col-md-12">
                         <label>COMPANY</label>
@@ -302,6 +310,8 @@
                   <li class="active about-edit"><a onClick="router.navigate('#admin/about',{trigger:true})">About <span class="sr-only">(current)</span></a></li>
                   <li class="courses-edit"><a onClick="router.navigate('#admin/courses',{trigger:true})">Courses <span class="sr-only">(current)</span></a></li>
                   <li class="locations-edit"><a onClick="router.navigate('#admin/locations',{trigger:true})">Locations <span class="sr-only">(current)</span></a></li>
+                  <li class="schedule-edit"><a onClick="router.navigate('#admin/schedule',{trigger:true})">Schedule <span class="sr-only">(current)</span></a></li>
+                  <li class="instructors-edit"><a onClick="router.navigate('#admin/instructors',{trigger:true})">Instructors <span class="sr-only">(current)</span></a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                     <li class="logOut-nav"><a onClick="router.navigate('#',{trigger:true})">LOG OUT</a></li>
@@ -313,7 +323,7 @@
                 <button class="btn btn-default save-profile-edit-button float-right">SAVE</button>
                 <button class="btn btn-default edit-profile-button float-right">EDIT</button>
             </div>
-            <div class="profile-page-container col-md-12">
+            <div class="profile-page-container col-xs-10 col-md-offset-1">
                 <div class="col-md-6">
                     <div class="form-group sign-in-form col-md-12">
                         <label>ABOUT TITLE</label>
@@ -354,6 +364,8 @@
                   <li class="about-edit"><a onClick="router.navigate('#admin/about',{trigger:true})">About <span class="sr-only">(current)</span></a></li>
                   <li class="active courses-edit"><a onClick="router.navigate('#admin/courses',{trigger:true})">Courses <span class="sr-only">(current)</span></a></li>
                   <li class="locations-edit"><a onClick="router.navigate('#admin/locations',{trigger:true})">Locations <span class="sr-only">(current)</span></a></li>
+                  <li class="schedule-edit"><a onClick="router.navigate('#admin/schedule',{trigger:true})">Schedule <span class="sr-only">(current)</span></a></li>
+                  <li class="instructors-edit"><a onClick="router.navigate('#admin/instructors',{trigger:true})">Instructors <span class="sr-only">(current)</span></a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                     <li class="logOut-nav"><a onClick="router.navigate('#',{trigger:true})">LOG OUT</a></li>
@@ -473,6 +485,111 @@
             </div>
         </script>
 
+        <script type="text/template" class="locations-container-template">
+            <nav class="navbar navbar-default navbar-admin navbar-fixed-top">
+              <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+                  <li class="company-edit"><a onClick="router.navigate('#admin',{trigger:true})">Company <span class="sr-only">(current)</span></a></li>
+                  <li class="about-edit"><a onClick="router.navigate('#admin/about',{trigger:true})">About <span class="sr-only">(current)</span></a></li>
+                  <li class="courses-edit"><a onClick="router.navigate('#admin/courses',{trigger:true})">Courses <span class="sr-only">(current)</span></a></li>
+                  <li class="active locations-edit"><a onClick="router.navigate('#admin/locations',{trigger:true})">Locations <span class="sr-only">(current)</span></a></li>
+                  <li class="schedule-edit"><a onClick="router.navigate('#admin/schedule',{trigger:true})">Schedule <span class="sr-only">(current)</span></a></li>
+                  <li class="instructors-edit"><a onClick="router.navigate('#admin/instructors',{trigger:true})">Instructors <span class="sr-only">(current)</span></a></li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                    <li class="logOut-nav"><a onClick="router.navigate('#',{trigger:true})">LOG OUT</a></li>
+                  </ul>
+                </div><!-- /.navbar-collapse -->
+              </div><!-- /.container-fluid -->
+            </nav>
+            <div class="col-md-10 col-md-offset-1">
+                <button class="btn btn-default save-profile-edit-button float-right">SAVE</button>
+                <button class="btn btn-default edit-profile-button float-right">EDIT</button>
+            </div>
+            <div class="col-xs-10 col-md-offset-1 create-locations-container">
+            </div>
+            <div class="col-xs-10 col-md-offset-1 all-locations-container">
+            </div>
+        </script>
+
+        <script type="text/template" class="create-locations-template">
+            <div class="col-md-6">
+                <div class="form-group sign-in-form col-md-12">
+                    <label>DOJO NAME</label>
+                    <div class="input-group col-md-12">
+                        <input id="item-info-block" class="profile-edit form-control company-input" placeholder="" disabled="true"></input>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group sign-in-form col-md-12">
+                    <label>EMAIL</label>
+                    <div class="input-group col-md-12">
+                        <input id="item-info-block" class="form-control profile-edit email-input" placeholder="" disabled="true"></input>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group sign-in-form col-md-12">
+                    <label>PHONE</label>
+                    <div class="input-group col-md-12">
+                        <input id="item-info-block" class="form-control profile-edit phone-input" placeholder="" disabled="true"></input>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group sign-in-form col-md-12">
+                    <label>ADDRESS</label>
+                    <div class="input-group col-md-12">
+                        <input id="item-info-block" class="form-control profile-edit address-input" placeholder="" disabled="true"></input>
+                    </div>
+                </div>
+            </div>
+        </script>
+
+        <script type="text/template" class="current-locations-template">
+            <div class="col-md-6 current-location-item">
+                <div class="location-admin-container"
+                    <h3><%=locationName%></h3>
+                    <p><%=locationEmail%></p>
+                    <p><%=locationPhone%></p>
+                    <p><%=locationAddress%></p>
+                </div>
+            </div>
+        </script>
+
+        <script type="text/template" class="current-locations-live-template">
+            <div class="col-md-6 current-location-item">
+                <div class="location-admin-container"
+                    <h3><%=locationName%></h3>
+                    <p><%=locationEmail%></p>
+                    <p><%=locationPhone%></p>
+                    <p><%=locationAddress%></p>
+                </div>
+            </div>
+        </script>
+
+        <script type="text/template" class="all-locations-template">
+            <div class="header-background-image"></div>
+            <div class="col-md-12 locations-view-container">
+                <h1 class="header-txt-lg">LOCATIONS</h1>
+                <div class="col-xs-10 col-md-offset-1 locations-list"></div>
+            </div>
+        </script>
+
 
         
 
@@ -512,6 +629,7 @@
         <script src="scripts/landing-page-view.js"></script>
         <script src="scripts/navbar-view.js"></script>
         <script src="scripts/courses-view.js"></script>
+        <script src="scripts/locations-view.js"></script>
         <script src="scripts/about-view.js"></script>
         <script src="scripts/footer-view.js"></script>
         <script src="scripts/sign-in-view.js"></script>
@@ -519,6 +637,7 @@
         <script src="scripts/admin-view.js"></script>
         <script src="scripts/about-admin-view.js"></script>
         <script src="scripts/courses-admin-view.js"></script>
+        <script src="scripts/locations-admin-view.js"></script>
 
         <!-- Latest compiled and minified JavaScript -->
         

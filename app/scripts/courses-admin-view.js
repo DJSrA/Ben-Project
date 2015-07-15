@@ -2,11 +2,12 @@ var CoursesAdminPage = Parse.View.extend ({
 
   events: {
     'click .edit-profile-button'      : 'toggleEditAttribute',
-    'click .save-profile-edit-button' : 'saveProfileEdit',
     'change #myFile'              : 'readURL',
     'click .add-course'           : 'addCourse',
     'click .cancel-add'           : 'cancelAddCourse',
-    'click .save-course-update-button' : 'updateCourse'
+    'click .save-course-update-button' : 'updateCourse',
+    'click .delete-class' : 'deleteCourse',
+    'click .save-new-edit-button' : 'saveProfileEdit'
   },
 
   template: _.template($('.courses-admin-template').text()),
@@ -23,7 +24,6 @@ var CoursesAdminPage = Parse.View.extend ({
         this.$el.html(this.template());
         this.render();
         if(Parse.User.current().get('logo')){
-          console.log(Parse.User.current().get('logo')._url);
           $('#logo-img').attr('src', Parse.User.current().get('logo')._url);
         }
         $('.template-container').css('padding-top', '80px');
@@ -59,7 +59,6 @@ var CoursesAdminPage = Parse.View.extend ({
     },
 
     readURL: function(){
-      console.log($('#myFile')[0]);
       var x = document.getElementById("myFile");
       var txt = "";
       if ('files' in x) {
@@ -87,7 +86,6 @@ var CoursesAdminPage = Parse.View.extend ({
           $('.delete-class').prop('disabled', true);
           $('.save-course-update-button').prop('disabled', true);
         })
-        // $('.save-profile-edit-button').css('opacity', 0);
         $(event.target).removeClass('active');
       }else {
         _.each($('.profile-edit'), function(){
@@ -97,7 +95,6 @@ var CoursesAdminPage = Parse.View.extend ({
 
 
         })
-        // $('.save-profile-edit-button').css('opacity', 1);
         $(event.target).addClass('active');
       }
     },
@@ -107,13 +104,11 @@ var CoursesAdminPage = Parse.View.extend ({
         _.each($('.profile-edit'), function(){
           $('.profile-edit').prop('disabled', 'disabled');
         })
-        // $('.save-profile-edit-button').css('opacity', 0);
         $(event.target).removeClass('active');
       }else {
         _.each($('.profile-edit'), function(){
           $('.profile-edit').prop('disabled', false);
         })
-        // $('.save-profile-edit-button').css('opacity', 1);
         $(event.target).addClass('active');
       }
     },
@@ -134,17 +129,18 @@ var CoursesAdminPage = Parse.View.extend ({
          
           return new Parse.File(name, file);
         } 
-        // else if (fileUploadControl.files.length === 0) {
-        //   return Parse.User.current().get('photo');
-        // };
       }
       courseInstance.set({
         courseTitle:      ($('.course-title-input').val().length != 0 ? $('.course-title-input').val() : Parse.User.current().get('courseTitle')),
         courseInstructor:        ($('.course-instructor-input').val().length != 0 ? $('.course-instructor-input').val() : Parse.User.current().get('courseInstructor')),
         courseDescription:    ($('.course-description-textarea').val().trim().length != 0 ? $('.course-description-textarea').val() : Parse.User.current().get('courseDescription')),
         logo:         (photoUpload() != undefined ? photoUpload() : Parse.User.current().get('logo')),
-      }).save();
-      console.log(photoUpload());
+      }).save().then(function(){
+        that.cancelAddCourse()
+        $('.courses-list-container').html('')
+        that.getCourses();
+      });
+
       $('.edit-profile-button').click();
       $('.profile-edit').val('');
       $('.course-title-input').prop('placeholder', Parse.User.current().get('courseTitle')),
@@ -154,13 +150,6 @@ var CoursesAdminPage = Parse.View.extend ({
 
     updateCourse: function (){
       var courseId = event.target.id;
-      // console.log($('#' + courseId + '').find('input')[0])
-      // _.each($('#' + courseId + '').find('input'), function(input){
-      //   console.log(input);
-      //   if($(input).hasClass('course-title-input')){
-
-      //   }
-      // })
       var photoUpload = function() {
         //original photo upload function
 
@@ -171,21 +160,14 @@ var CoursesAdminPage = Parse.View.extend ({
          
           return new Parse.File(name, file);
         } 
-        // else if (fileUploadControl.files.length === 0) {
-        //   return Parse.User.current().get('photo');
-        // };
       }
       _.each($('.course-detail-container'), function(courseContainer){
           if(courseContainer.id == courseId){
-            var title = $(courseContainer).find('input.course-title-input')[0].value.length
-            console.log(title);
-            // console.log($(title).selector.val())
             var query = new Parse.Query('courseInstance');
             query.equalTo('objectId', courseId)
             query.limit(1500);
             query.find({
               success: function(course){
-                console.log(course);
 
                 course[0].set({
                   courseTitle: ($(courseContainer).find('input.course-title-input')[0].value.length > 0 ?  $(courseContainer).find('input.course-title-input')[0].value : course[0].get('courseTitle')),
@@ -193,10 +175,8 @@ var CoursesAdminPage = Parse.View.extend ({
                   courseDescription: ($(courseContainer).find('textarea.course-description-textarea')[0].value.length > 0 ?  $(courseContainer).find('textarea.course-description-textarea')[0].value : course[0].get('courseDescription')),
                   logo: (photoUpload() != undefined ? photoUpload() : course[0].get('logo'))
                 }).save().then(function(){
-                  router.navigate('#admin/courses',{trigger:true})
+                  router.swap( new CoursesAdminPage() );
                 })
-                console.log(course[0].attributes)
-                console.log($('' + $(course).selector + '').val())
               },
               error: function(error){
                 console.log('no course was found');
@@ -205,42 +185,32 @@ var CoursesAdminPage = Parse.View.extend ({
             
           }
       })
-      // var that = this;
-
-
-
-      // var photoUpload = function() {
-      //   //original photo upload function
-
-      //   var fileUploadControl = $("#myFile")[0];
-      //   if (fileUploadControl.files.length > 0) {
-      //     var file = fileUploadControl.files[0];
-      //     var name = "photo.jpg";
-         
-      //     return new Parse.File(name, file);
-      //   } 
-      //   // else if (fileUploadControl.files.length === 0) {
-      //   //   return Parse.User.current().get('photo');
-      //   // };
-      // }
-      // courseInstance.set({
-      //   courseTitle:      ($('.course-title-input').val().length != 0 ? $('.course-title-input').val() : Parse.User.current().get('courseTitle')),
-      //   courseInstructor:        ($('.course-instructor-input').val().length != 0 ? $('.course-instructor-input').val() : Parse.User.current().get('courseInstructor')),
-      //   courseDescription:    ($('.course-description-textarea').val().trim().length != 0 ? $('.course-description-textarea').val() : Parse.User.current().get('courseDescription')),
-      //   logo:         (photoUpload() != undefined ? photoUpload() : Parse.User.current().get('logo')),
-      // }).save();
-      // console.log(photoUpload());
-      // $('.edit-profile-button').click();
-      // $('.profile-edit').val('');
-      // $('.course-title-input').prop('placeholder', Parse.User.current().get('courseTitle')),
-      // $('.course-instructor-input').prop('placeholder', Parse.User.current().get('courseInstructor'))
-      // $('.course-description-textarea').prop('placeholder', Parse.User.current().get('courseDescription'))
     },
 
     addCourse: function(){
       $('.add-course').text('CANCEL').addClass('cancel-add').removeClass('add-course')
       $('.course-add-container').prepend(this.courseInstanceTemplate);
       this.toggleEditAttribute();
+    },
+
+    deleteCourse: function(){
+      var that = this;
+      var thisCourse = $(event.target).prop('id');
+      var query = new Parse.Query('courseInstance');
+      query.limit(1500);
+      query.equalTo('objectId', thisCourse);
+      query.find({
+        success: function(course){
+          course[0].destroy()
+          $('div#' + thisCourse + '').remove();
+          that.toggleEditAttribute();
+
+        },
+
+        error: function(error){
+          console.log('unable to destroy');
+        }
+      })
     },
 
     cancelAddCourse: function() {
