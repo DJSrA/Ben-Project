@@ -685,12 +685,102 @@
               </div><!-- /.container-fluid -->
             </nav>
             <div class="col-md-10 col-md-offset-1">
-                <button class="btn btn-default add-course">ADD +</button>
+                <button class="btn btn-default add-instructor">ADD +</button>
                 <button class="float-right btn btn-default edit-profile-button">EDIT</button>
             </div>
-            <div class="course-add-container col-md-10 col-md-offset-1">
+            <div class="instructor-add-container col-md-10 col-md-offset-1">
             </div>
-            <div class="courses-list-container col-md-10 col-md-offset-1">
+            <div class="instructor-list-container col-md-10 col-md-offset-1">
+            </div>
+        </script>
+
+        <script type="text/template" class="instructor-detail-template">
+            <div class="instructor-detail-container col-md-12" id="<%=instructorId%>">
+                <div class="form-group sign-in-form col-md-12">
+                    <label>INSTRUCTOR NAME - <%=instructorName%></label>
+                    <div class="input-group col-md-12">
+                        <input id="item-info-block" class="profile-edit form-control instructor-name-input" placeholder="<%=instructorName%>" disabled="true"></input>
+                    </div>
+                </div>
+                <div class="col-md-6 no-padding">
+                    <div class="form-group sign-in-form col-md-12">
+                        <label>INSTRUCTOR TAGLINE</label>
+                        <div class="input-group col-md-12">
+                            <input id="item-info-block" class="form-control profile-edit instructor-tagline-input" placeholder="<%=instructorTagline%>" disabled="true"></input>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 no-padding">
+                    <div class="form-group sign-in-form col-md-12">
+                        <label>UPLOAD PROFILE PIC</label>
+                        <div class="input-group col-md-12">
+                        <input type="file" id="myFile" class="form-control profile-edit logo-input" disabled="true" multiple size="50">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 no-padding">
+                    <div class="form-group sign-in-form col-md-12">
+                        <label>ISNTRUCTOR BIO</label>
+                        <div class="input-group col-md-12">
+                            <textarea id="item-info-block" class="form-control profile-edit instructor-bio-textarea" placeholder="<%=instructorBio%>" disabled="true"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 last-profile">
+                    <div class="form-group sign-in-form col-md-12">
+                        <label>INSTRUCTOR PROFILE PIC</label>
+                        <div class="input-group col-md-12" id="picit">
+                            <img class="col-md-5 no-padding" id="instructorImage-img" src="<%=instructorImage%>" alt="your logo"/>
+                        </div>
+                    </div>
+                </div>
+                <button class="delete-class float-right btn btn-danger"  id="<%=instructorId%>" disabled=true>DELETE</button>
+                <button class="btn btn-default float-right save-instructor-update-button" id="<%=instructorId%>" disabled=true>SAVE</button>
+
+            </div>
+        </script>
+
+        <script type="text/template" class="add-instructor-detail-template">
+            <div class="add-instructor-detail-container col-md-12">
+                <div class="form-group sign-in-form col-md-12">
+                    <label>INSTRUCTOR NAME</label>
+                    <div class="input-group col-md-12">
+                        <input id="item-info-block" class="profile-edit form-control instructor-name-input" placeholder="Instructor Name" disabled="true"></input>
+                    </div>
+                </div>
+                <div class="col-md-6 no-padding">
+                    <div class="form-group sign-in-form col-md-12">
+                        <label>INSTRUCTOR TAGLINE</label>
+                        <div class="input-group col-md-12">
+                            <input id="item-info-block" class="form-control profile-edit instructor-tagline-input" placeholder="Instructor Tagline" disabled="true"></input>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 no-padding">
+                    <div class="form-group sign-in-form col-md-12">
+                        <label>UPLOAD PROFILE PIC</label>
+                        <div class="input-group col-md-12">
+                        <input type="file" id="myFile" class="form-control profile-edit instructor-image" disabled="true" multiple size="50">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 no-padding">
+                    <div class="form-group sign-in-form col-md-12">
+                        <label>INSTRUCTOR BIO</label>
+                        <div class="input-group col-md-12">
+                            <textarea id="item-info-block" class="form-control profile-edit instructor-bio-textarea" placeholder="Instructor Bio..." disabled="true"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 last-profile">
+                    <div class="form-group sign-in-form col-md-12">
+                        <label>INSTRUCTOR PROFILE PIC</label>
+                        <div class="input-group col-md-12" id="picit">
+                            <img class="col-md-5 no-padding" id="instructorImage-img" src="../images/pre-load.png" alt="your logo"/>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-default save-new-edit-button float-right">SAVE</button>
             </div>
         </script>
 
