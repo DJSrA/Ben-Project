@@ -15,7 +15,8 @@ var LandingPage = Parse.View.extend ({
     $('.template-container').css('padding-top', '50px');
     $('.footer-template-container').show();
     this.render();
-    this.fillCompanyInfo()
+    this.getShopInfo();
+    // this.fillCompanyInfo()
   },
 
   render: function() {
@@ -28,22 +29,39 @@ var LandingPage = Parse.View.extend ({
     },200);
   },
 
-  fillCompanyInfo: function () {
+  getShopInfo: function(){
     var that = this;
-    var query = new Parse.Query('user');
+    var query = new Parse.Query('shopInstance');
     query.limit(1500);
     query.find({
-      success: function(user){
-        $('.header-txt-lg').text(Parse.User.current().get('company'))
-        $('.header-txt-p').text(Parse.User.current().get('tagline'))
-        $('.about-title').text(Parse.User.current().get('aboutTitle'))
-        $('.about-body').text(Parse.User.current().get('aboutBody'))
+      success: function(shop){
+        console.log(shop[0]);
+        $('.header-txt-lg').text(shop[0].attributes.company)
+        $('.header-txt-p').text(shop[0].attributes.tagline)
+        $('.about-title').text(shop[0].attributes.aboutTitle)
+        $('.about-body').text(shop[0].attributes.aboutBody)
       },
-
-      error: function(error){
-        console.log(error + " it failed");
+      error: function(error) {
+        console.log('No shop found. Using Defaults.');
       }
     })
-  }
+  },
+  // fillCompanyInfo: function () {
+  //   var that = this;
+  //   var query = new Parse.Query('user');
+  //   query.limit(1500);
+  //   query.find({
+  //     success: function(user){
+  //       $('.header-txt-lg').text(shop.company))
+  //       $('.header-txt-p').text(shop.tagline))
+  //       $('.about-title').text(shop.aboutTitle))
+  //       $('.about-body').text(shop.aboutBody))
+  //     },
+
+  //     error: function(error){
+  //       console.log(error + " it failed");
+  //     }
+  //   })
+  // }
 
 });

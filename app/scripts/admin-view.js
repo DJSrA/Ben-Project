@@ -18,10 +18,7 @@ var AdminPage = Parse.View.extend ({
         $('.template-container').html(this.$el)
         this.$el.html(this.template());
         this.render();
-        if(Parse.User.current().get('logo')){
-          console.log(Parse.User.current().get('logo')._url);
-          $('#logo-img').attr('src', Parse.User.current().get('logo')._url);
-        }
+
         $('.footer-template-container').hide();
         $('.main-nav').hide();
         $('.template-container').css('padding-top', '80px');
@@ -30,6 +27,23 @@ var AdminPage = Parse.View.extend ({
     },
 
     render: function() {
+    },
+
+    getShopInfor: function(){
+      var that = this;
+      var query = new Parse.Query('shopInstance');
+      query.limit(1500);
+      query.find({
+        success: function(shop){
+          if(shop.logo){
+            // console.log(shop.logo('_url');
+            $('#logo-img').attr('src', shop.logo._url);
+          }
+        },
+        error: function(error) {
+          console.log('No shop found. Using Defaults.');
+        }
+      })
     },
 
     readURL: function(){
@@ -72,6 +86,8 @@ var AdminPage = Parse.View.extend ({
 
     saveProfileEdit: function () {
       var that = this;
+      var ShopInstance = Parse.Object.extend("shopInstance");
+      var shopInstance = new ShopInstance();
       var photoUpload = function() {
         //original photo upload function
 
@@ -85,18 +101,18 @@ var AdminPage = Parse.View.extend ({
           return Parse.User.current().get('photo');
         };
       }
-      Parse.User.current().set({
-        company:      ($('.company-input').val().length != 0 ? $('.company-input').val() : Parse.User.current().get('company')),
-        email:        ($('.email-input').val().length != 0 ? $('.email-input').val() : Parse.User.current().get('email')),
-        tagline:      ($('.tagline-input').val().length != 0 ? $('.tagline-input').val() : Parse.User.current().get('tagline')),
-        logo:         (photoUpload() != undefined ? photoUpload() : Parse.User.current().get('logo')),
+      shopInstance.set({
+        company:      ($('.company-input').val().length != 0 ? $('.company-input').val() : shopInstance.company),
+        email:        ($('.email-input').val().length != 0 ? $('.email-input').val() : shopInstance.email),
+        tagline:      ($('.tagline-input').val().length != 0 ? $('.tagline-input').val() : shopInstance.tagline),
+        logo:         (photoUpload() != undefined ? photoUpload() : shopInstance.logo),
       }).save();
       console.log(photoUpload());
       $('.edit-profile-button').click();
       $('.profile-edit').val('');
-      $('.company-input').prop('placeholder', Parse.User.current().get('company')),
-      $('.email-input').prop('placeholder', Parse.User.current().get('email'))
-      $('.tagline-input').prop('placeholder', Parse.User.current().get('tagline'))
+      $('.company-input').prop('placeholder', shopInstance.company),
+      $('.email-input').prop('placeholder', shopInstance.email)
+      $('.tagline-input').prop('placeholder', shopInstance.tagline)
     },
 
 });
