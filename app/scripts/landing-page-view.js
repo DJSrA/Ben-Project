@@ -46,22 +46,5 @@ var LandingPage = Parse.View.extend ({
       }
     })
   },
-  // fillCompanyInfo: function () {
-  //   var that = this;
-  //   var query = new Parse.Query('user');
-  //   query.limit(1500);
-  //   query.find({
-  //     success: function(user){
-  //       $('.header-txt-lg').text(shop.company))
-  //       $('.header-txt-p').text(shop.tagline))
-  //       $('.about-title').text(shop.aboutTitle))
-  //       $('.about-body').text(shop.aboutBody))
-  //     },
-
-  //     error: function(error){
-  //       console.log(error + " it failed");
-  //     }
-  //   })
-  // }
 
 });

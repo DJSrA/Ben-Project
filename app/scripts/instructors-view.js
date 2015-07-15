@@ -23,15 +23,15 @@ var InstructorsView = Parse.View.extend ({
     query.limit(1500);
     query.find({
       success: function(instructor){
-        console.log(instructor)
-        // for(i=0;i<instructor.length;i++){
-        //   $('.instructor-template-list-container').prepend(that.instructorInstanceTemplate({
-        //     instructorTitle: instructor[i].attributes.instructorTitle,
-        //     instructorInstructor: instructor[i].attributes.instructorInstructor,
-        //     instructorDescription: instructor[i].attributes.instructorDescription,
-        //     instructorImage: instructor[i].attributes.logo._url
-        //   }));
-        // }
+        console.log(instructor[0].attributes.instructorImage._url)
+        for(i=0;i<instructor.length;i++){
+          $('.instructors-template-list-container').append(that.instructorsInstanceTemplate({
+            instructorName: instructor[i].attributes.instructorName,
+            instructorTagline: instructor[i].attributes.instructorTagline,
+            instructorBio: instructor[i].attributes.instructorBio,
+            instructorImage: instructor[i].attributes.instructorImage._url
+          }));
+        }
       },
 
       error: function(error) {
