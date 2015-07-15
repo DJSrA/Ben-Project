@@ -17,7 +17,6 @@ var SignInPage = Parse.View.extend ({
     },
 
     render: function() {
-      // $(this.el).append(this.template());
     },
 
     signIn: function(e){
@@ -48,7 +47,6 @@ var SignInPage = Parse.View.extend ({
           return failed;
         }
       })
-      // This is just a basic parse login function
       if(failed == false){
         Parse.User.logIn(username, password, {
           success: function(user){

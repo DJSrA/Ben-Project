@@ -24,18 +24,13 @@ var SignUpPage = Parse.View.extend({
   },
 
   signUp: function () {
-      var userName = $('.username-input').val();
+      var company = $('.username-input').val();
       var password = $('.password-input').val();
       var email = $('.email-input').val();
-      var address = $('.address-input').val();
-      var owner = $('.owner-input').val();
-      var ffl = $('.ffl-input').val();
-
 
     // setting the new user attributes
 
       var user = new Parse.User();
-      // if($('.shop-consumer-select > div').hasClass('checked')){
         user.set({
           'username': userName,
           'password': password,

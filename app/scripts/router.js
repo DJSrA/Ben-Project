@@ -4,12 +4,14 @@ var AppRouter = Parse.Router.extend({
 		''										: 'landingPage',
 		'about'								: 'aboutPage',
 		'courses'							: 'coursesPage',
+		'locations'						: 'locationsPage',
 		'sign-in'							: 'signInPage',
 		'sign-up'							: 'signUpPage',
 		'admin'								: 'adminPage',
 		'admin/about'					: 'adminAboutPage',
 		'admin/courses'				: 'adminCoursesPage',
-		'admin/instructors'		: 'adminInstructorsPage'
+		'admin/instructors'		: 'adminInstructorsPage',
+		'admin/locations'			: 'adminLocationsPage'
 	},
 
 	initialize: function(){
@@ -33,6 +35,12 @@ var AppRouter = Parse.Router.extend({
 
 	coursesPage: function() {
 		this.swap( new CoursesView({router: this}) );
+		new NavbarView({router: this});
+		new FooterView({router: this});
+	},
+
+	locationsPage: function() {
+		this.swap( new LocationsView({router: this}) );
 		new NavbarView({router: this});
 		new FooterView({router: this});
 	},
@@ -62,8 +70,8 @@ var AppRouter = Parse.Router.extend({
 		this.swap( new CoursesAdminPage({router: this}));
 	},
 
-	adminInstructorsPage: function () {
-		this.swap( new InstructorsAdminPage({router: this}));
+	adminLocationsPage: function () {
+		this.swap( new LocationsAdminPage({router: this}));
 	},
 
 	swap: function (view) {

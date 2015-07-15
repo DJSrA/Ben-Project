@@ -11,7 +11,6 @@ var FooterView = Parse.View.extend ({
   initialize: function() {
     var that = this;
     console.log('footer is here');
-    // this.router = options.router; 
     $('.footer-template-container').html(this.$el)
     this.$el.html(this.template());
   },
