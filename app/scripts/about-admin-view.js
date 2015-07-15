@@ -41,16 +41,24 @@ var AboutAdminPage = Parse.View.extend ({
 
     saveProfileEdit: function () {
       var that = this;
-      var text = $('.about-body-textarea').val();
-      text = text.replace(/\r?\n/g, '<br/>');
-      Parse.User.current().set({
-        aboutTitle:   ($('.about-title-input').val().length != 0 ? $('.about-title-input').val() : Parse.User.current().get('aboutTitle')),
-        aboutBody:    ($('.about-body-textarea').val().trim().length != 0 ? $('.about-body-textarea').val() : Parse.User.current().get('aboutBody')),
-      }).save();
-      $('.edit-profile-button').click();
-      $('.profile-edit').val('');
-      $('.about-body-textarea').prop('placeholder', Parse.User.current().get('aboutBody')),
-      $('.about-title-input').prop('placeholder', Parse.User.current().get('aboutTitle'))
+      var query = new Parse.Query('shopInstance');
+      query.find({
+        success:function(shop){
+          console.log(shop[0].id);
+          shop[0].set({
+            aboutTitle:      ($('.about-title-input').val().length != 0 ? $('.about-title-input').val() : shop[0].attributes.aboutTitle),
+            aboutBody:        ($('.about-body-textarea').val().trim().length != 0 ? $('.about-body-textarea').val() : shop[0].attributes.aboutBody),
+          }).save()
+          console.log(shop[0]);
+          $('.edit-profile-button').click();
+          $('.profile-edit').val('');
+          $('.about-body-textarea').prop('placeholder', shop[0].attributes.aboutBody),
+          $('.about-title-input').prop('placeholder', shop[0].attributes.aboutTitle)
+        },
+        error: function(error){
+          console.log('no existing shop');
+        }
+      })
     },
 
 });
