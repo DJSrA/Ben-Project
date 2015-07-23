@@ -17,6 +17,9 @@ var LandingPage = Parse.View.extend ({
     this.render();
     this.getShopInfo();
     // this.fillCompanyInfo()
+    if(Parse.User.current()){
+      Parse.User.logOut()
+    }
   },
 
   render: function() {

@@ -73,13 +73,12 @@
                 <h1 class="header-txt-lg col-md-12 col-offset-md-3">YOUR DOJO</h1>
                 <p class="header-txt-p col-md-12 col-offset-md-3">Discover Self-Defense, Fitness & Fulfillment... </p>
                 <button class="about about-header-button">LEARN MORE</button>
-                <i class="fa fa-chevron-down"></i>
             </div>
         </script>
 
         <script type="text/template" class="about-template">
             <div class="col-md-12 about-container">
-            <div class="about-us col-xs-10 col-md-offset-1">
+            <div class="about-us col-md-10 col-md-offset-1">
                 <h1 class="about-title">About Us Title</h1>
                 <p class="about-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras rhoncus posuere ornare. Maecenas lacus urna, lacinia eget dolor eget, commodo mollis libero. Cras et nulla et risus tempus convallis eget et nisi. Etiam vel augue pulvinar, gravida ante sit amet, scelerisque nisi. Etiam placerat sem id porttitor efficitur. Donec et molestie neque, nec gravida lectus. Vivamus nisi tortor, sagittis ut dui blandit, consectetur tristique nulla. Donec risus massa, vehicula vitae velit in, ullamcorper sollicitudin ante. Ut vel ultricies justo. Sed sed odio ac metus vehicula lobortis. Maecenas faucibus turpis quis nunc venenatis tincidunt.</p>
                 <button class="btn btn-danger" onClick="router.navigate('#courses',{trigger:true})">VIEW COURSES</button>
@@ -89,12 +88,6 @@
 
         <script type="text/template" class="footer-template">
         <div class="footer col-md-12">
-            <div class="left-side col-md-6 no-padding">
-                <div class="left-div"></div>
-            </div>
-            <div class="right-side col-md-6 no-padding">
-                <div class="right-div"></div>
-            </div>
             <ul class="footer-list col-md-6">
                 <li class="footer-list-item col-md-11 col-md-offset-1">
                     EMAIL: <a href="mailto:support@oplan.co?subject=OPLAN query">you@email.com</a>
@@ -243,9 +236,7 @@
                     <li class="locations-edit"><a onClick="router.navigate('#admin/locations',{trigger:true})">Locations <span class="sr-only">(current)</span></a></li>
                     <li class="schedule-edit"><a onClick="router.navigate('#admin/schedule',{trigger:true})">Schedule <span class="sr-only">(current)</span></a></li>
                     <li class="instructors-edit"><a onClick="router.navigate('#admin/instructors',{trigger:true})">Instructors <span class="sr-only">(current)</span></a></li>
-                  </ul>
-                  <ul class="nav navbar-nav navbar-right">
-                    <li class="logOut-nav"><a onClick="router.navigate('#',{trigger:true})">LOG OUT</a></li>
+                    <li class="logOut-nav float-right"><a onClick="router.navigate('#',{trigger:true})">LOG OUT</a></li>
                   </ul>
                 </div><!-- /.navbar-collapse -->
               </div><!-- /.container-fluid -->
@@ -484,7 +475,7 @@
 
         <script type="text/template" class="course-instance-template">
             <div class="col-xs-12 course-detail-container">
-                <div class='col-xs-3' style="background: url(<%=courseImage%>) no-repeat center; min-height: 250px; max-height: 340px;">
+                <div class='col-xs-3 course-image' style="background: url(<%=courseImage%>) no-repeat center; min-height: 250px; max-height: 340px;">
                 </div>
                 <div class="col-md-9">
                     <h1><%=courseTitle%></h1>
@@ -542,7 +533,7 @@
 
         <script type="text/template" class="instructors-instance-template">
             <div class="col-xs-12 instructor-detail-container">
-                <div class='col-xs-3' style="background: url(<%=instructorImage%>) no-repeat center; min-height: 250px; max-height: 340px;">
+                <div class='col-xs-3 course-image' style="background: url(<%=instructorImage%>) no-repeat center; min-height: 250px; max-height: 340px;">
                 </div>
                 <div class="col-md-9">
                     <h1><%=instructorName%></h1>
